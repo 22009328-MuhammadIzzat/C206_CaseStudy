@@ -26,6 +26,15 @@ public class C206_CaseStudy {
 
 					C206_CaseStudy.addSchool(SchoolList, ToBeAdded);
 				}
+				else if (option1 == 2) {
+	                // View all schools
+	                C206_CaseStudy.viewAllSchool(SchoolList);
+	            }
+				else if (option1 == 3) {
+	                // Delete a school
+	                String name = Helper.readString("Enter School Name to delete: ");
+	                C206_CaseStudy.deleteSchoolByName(SchoolList, name);
+	            }
 			if(option == 2) {
 				C206_CaseStudy.viewAllSchool(SchoolList);
 			}
@@ -145,7 +154,7 @@ public class C206_CaseStudy {
 
 		for (int i = 0; i < SchoolList.size(); i++) {
 
-			output += String.format("%-10s %-30s %-10s\n", SchoolList.get(i).getSchoolName(),
+			output += String.format("%-21s %-21s %-10s\n", SchoolList.get(i).getSchoolName(),
 					SchoolList.get(i).getSchoolAddress(), SchoolList.get(i).getContactNumber());
 
 		}
@@ -154,7 +163,7 @@ public class C206_CaseStudy {
 
 	public static void viewAllSchool(ArrayList<School> SchoolList) {
 		C206_CaseStudy.setHeader("SCHOOL LIST");
-		String output = String.format("%-10s%-30s%-10s\n", "SCHOOL NAME", "SCHOOL ADDRESS", "SCHOOL CONTACT NUMBER");
+		String output = String.format("%-20s %-20s %-10s\n", "|SCHOOL-NAME|", "|SCHOOL-ADDRESS|", "|SCHOOL-CONTACT-NUMBER|");
 		output += retrieveAllSchool(SchoolList);
 		System.out.println(output);
 	}
