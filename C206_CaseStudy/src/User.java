@@ -17,19 +17,19 @@ public class Users {
 		this.childNric = childNric;
 	}
 
-	public String name() {
+	public String getName() {
 		return name;
 	}
 
-	public String nric() {
+	public String getNric() {
 		return nric;
 	}
 
-	public String contactNumber() {
+	public String getContactNumber() {
 		return contactNumber;
 		
 	}
-	public String childNric() {
+	public String getChildNric() {
 		return childNric;
 }
 
