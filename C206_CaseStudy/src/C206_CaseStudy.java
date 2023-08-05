@@ -33,11 +33,9 @@ public class C206_CaseStudy {
 					// Delete a school
 					String name = Helper.readString("Enter School Name to delete: ");
 					C206_CaseStudy.deleteSchoolByName(SchoolList, name);
+					System.out.println("School deleted");
+					
 				}
-				if (option == 2) {
-					C206_CaseStudy.viewAllSchool(SchoolList);
-				}
-
 			} else if (option == 2) {
 				// Add a new item
 
@@ -176,11 +174,9 @@ public class C206_CaseStudy {
 			School school = schoolList.get(i);
 			if (school.getSchoolName().equalsIgnoreCase(schoolName)) {
 				schoolList.remove(i);
-				System.out.println("School '" + schoolName + "' has been deleted.");
 				return;
 			}
 		}
-		System.out.println("School '" + schoolName + "' not found.");
 	}
 
 	/*

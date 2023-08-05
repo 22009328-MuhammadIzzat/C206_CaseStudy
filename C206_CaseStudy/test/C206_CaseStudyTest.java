@@ -88,7 +88,45 @@ public class C206_CaseStudyTest {
 	    // Test that the details are displayed correctly
 	    assertEquals("Test that the display is correct.", testOutput, allSchools);
 	}
-	
+	@Test
+	public void testDeleteSchool() {
+	    // Test Case 1: Normal Condition - Delete an existing school by name
+	    // Add some schools to the SchoolList
+	    C206_CaseStudy.addSchool(SchoolList,School1);
+	    C206_CaseStudy.addSchool(SchoolList, School2);
+	    C206_CaseStudy.addSchool(SchoolList, School3);
+
+	    // Delete School 2 by name
+	    C206_CaseStudy.deleteSchoolByName(SchoolList, "Good School");
+
+	    // Check that School B is removed from the list
+	    assertEquals("Test that the SchoolList size is 2 after deleting School B.", 2, SchoolList.size());
+	    assertFalse("Test that Good School is no longer in the SchoolList.", SchoolList.contains(School2));
+
+	    // Test Case 2: Boundary Condition - Delete the first school in the list
+	    // Add some schools to the SchoolList
+	    C206_CaseStudy.addSchool(SchoolList, School1);
+	    C206_CaseStudy.addSchool(SchoolList, School2);
+	    C206_CaseStudy.addSchool(SchoolList, School3);
+
+	    // Delete the first school (School X) by name
+	    C206_CaseStudy.deleteSchoolByName(SchoolList, "Granite Bay School");
+
+	    // Check that School X is removed from the list
+	    assertEquals("Test that the SchoolList size is 2 after deleting School X.", 2, SchoolList.size());
+	    assertFalse("Test that Gramite Bay School is no longer in the SchoolList.", SchoolList.contains(School1));
+
+	    // Test Case 3: Error Condition - Delete a school that does not exist in the list
+	    // Add some schools to the SchoolList
+	    C206_CaseStudy.addSchool(SchoolList,School1);
+	    C206_CaseStudy.addSchool(SchoolList, School2);
+
+	    // Delete a school (School R) that does not exist in the list
+	    C206_CaseStudy.deleteSchoolByName(SchoolList, "School R");
+
+	    // Check that the SchoolList remains unchanged (no schools are deleted)
+	    assertEquals("Test that the SchoolList size is 2 after attempting to delete a non-existent school.", 2, SchoolList.size());
+	}
 	@Test
 	public void c206_test() {
 		//fail("Not yet implemented"); 
