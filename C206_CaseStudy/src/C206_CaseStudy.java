@@ -180,7 +180,7 @@ public class C206_CaseStudy {
 		System.out.println("School '" + schoolName + "' not found.");
 	}
 
-	}
+	
 
 	/*
 	  public static void viewAllChromebook(ArrayList<Chromebook> chromebookList) {
