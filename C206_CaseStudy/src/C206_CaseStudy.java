@@ -25,19 +25,18 @@ public class C206_CaseStudy {
 					School ToBeAdded = new School(name, Address, ContactNumber);
 
 					C206_CaseStudy.addSchool(SchoolList, ToBeAdded);
+					System.out.println("School added");
+				} else if (option1 == 2) {
+					// View all schools
+					C206_CaseStudy.viewAllSchool(SchoolList);
+				} else if (option1 == 3) {
+					// Delete a school
+					String name = Helper.readString("Enter School Name to delete: ");
+					C206_CaseStudy.deleteSchoolByName(SchoolList, name);
 				}
-				else if (option1 == 2) {
-	                // View all schools
-	                C206_CaseStudy.viewAllSchool(SchoolList);
-	            }
-				else if (option1 == 3) {
-	                // Delete a school
-	                String name = Helper.readString("Enter School Name to delete: ");
-	                C206_CaseStudy.deleteSchoolByName(SchoolList, name);
-	            }
-			if(option == 2) {
-				C206_CaseStudy.viewAllSchool(SchoolList);
-			}
+				if (option == 2) {
+					C206_CaseStudy.viewAllSchool(SchoolList);
+				}
 
 			} else if (option == 2) {
 				// Add a new item
@@ -138,15 +137,18 @@ public class C206_CaseStudy {
 
 		for (School existingSchool : schoolList) {
 			if (existingSchool.getSchoolName().equalsIgnoreCase(newSchoolName)) {
-				System.out.println(
-						"School with name '" + newSchoolName + "' already exists. Duplicate schools are not allowed.");
 				return;
 			}
+			if (newSchool.getContactNumber().isEmpty() || newSchool.getSchoolAddress().isEmpty()
+					|| newSchool.getSchoolName().isEmpty()) {
+				return;
+			}
+
 		}
 
 		// If no duplicate is found, add the new school to the list
 		schoolList.add(newSchool);
-		System.out.println("School '" + newSchoolName + "' has been added.");
+
 	}
 
 	public static String retrieveAllSchool(ArrayList<School> SchoolList) {
@@ -154,7 +156,7 @@ public class C206_CaseStudy {
 
 		for (int i = 0; i < SchoolList.size(); i++) {
 
-			output += String.format("%-21s %-21s %-10s\n", SchoolList.get(i).getSchoolName(),
+			output += String.format("%-30s %-30s %-10s\n", SchoolList.get(i).getSchoolName(),
 					SchoolList.get(i).getSchoolAddress(), SchoolList.get(i).getContactNumber());
 
 		}
@@ -163,7 +165,8 @@ public class C206_CaseStudy {
 
 	public static void viewAllSchool(ArrayList<School> SchoolList) {
 		C206_CaseStudy.setHeader("SCHOOL LIST");
-		String output = String.format("%-20s %-20s %-10s\n", "|SCHOOL-NAME|", "|SCHOOL-ADDRESS|", "|SCHOOL-CONTACT-NUMBER|");
+		String output = String.format("%-30s %-30s %-10s\n", "SCHOOL-NAME", "SCHOOL-ADDRESS",
+				"SCHOOL-CONTACT-NUMBER");
 		output += retrieveAllSchool(SchoolList);
 		System.out.println(output);
 	}
@@ -180,67 +183,64 @@ public class C206_CaseStudy {
 		System.out.println("School '" + schoolName + "' not found.");
 	}
 
-	
-
 	/*
-	  public static void viewAllChromebook(ArrayList<Chromebook> chromebookList) {
-	  // write your code here C206_CaseStudy.setHeader("CHROMEBOOK LIST"); String
-	  output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ASSET TAG",
-	  "DESCRIPTION", "AVAILABLE", "DUE DATE", "OS"); output +=
-	  retrieveAllChromebook(chromebookList);
-	  
-	  System.out.println(output); }
-	 
-	  // ================================= Option 2 Add an item (CRUD - Create) //
-	  ================================= public static Camcorder inputCamcorder() {
-	  String tag = Helper.readString("Enter asset tag > "); String description =
-	  Helper.readString("Enter description > "); int zoom =
-	  Helper.readInt("Enter optical zoom > ");
-	  
-	  Camcorder cc = new Camcorder(tag, description, zoom); return cc;
-	 
-	  }
-	  
-	  public static void addCamcorder(ArrayList<Camcorder> camcorderList, Camcorder
-	  cc) { Camcorder item; for (int i = 0; i < camcorderList.size(); i++) { item =
-	  camcorderList.get(i); if
-	  (item.getAssetTag().equalsIgnoreCase(cc.getAssetTag())) return; } if
-	  ((cc.getAssetTag().isEmpty()) || (cc.getDescription().isEmpty())) { return; }
-	  
-	  camcorderList.add(cc); }
-	  
-	  public static Chromebook inputChromebook() { String tag =
-	  Helper.readString("Enter asset tag > "); String description =
-	  Helper.readString("Enter description > "); String os =
-	  Helper.readString("Enter os >"); Chromebook cb = new Chromebook(tag,
-	  description, os);
-	  
-	  return cb;
-	  
-	  }
-	  
-	  public static void addChromebook(ArrayList<Chromebook> chromebookList,
-	  Chromebook cb) { Chromebook item; for (int i = 0; i < chromebookList.size();
-	  i++) { item = chromebookList.get(i); if
-	  (item.getAssetTag().equalsIgnoreCase(cb.getAssetTag())) return; }
-	  
-	  if ((cb.getAssetTag().isEmpty()) || (cb.getDescription().isEmpty())) {
-	 return; }
-	 
-	  chromebookList.add(cb);
-	  
-	  }
+	 * public static void viewAllChromebook(ArrayList<Chromebook> chromebookList) {
+	 * // write your code here C206_CaseStudy.setHeader("CHROMEBOOK LIST"); String
+	 * output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ASSET TAG",
+	 * "DESCRIPTION", "AVAILABLE", "DUE DATE", "OS"); output +=
+	 * retrieveAllChromebook(chromebookList);
+	 * 
+	 * System.out.println(output); }
+	 * 
+	 * // ================================= Option 2 Add an item (CRUD - Create) //
+	 * ================================= public static Camcorder inputCamcorder() {
+	 * String tag = Helper.readString("Enter asset tag > "); String description =
+	 * Helper.readString("Enter description > "); int zoom =
+	 * Helper.readInt("Enter optical zoom > ");
+	 * 
+	 * Camcorder cc = new Camcorder(tag, description, zoom); return cc;
+	 * 
+	 * }
+	 * 
+	 * public static void addCamcorder(ArrayList<Camcorder> camcorderList, Camcorder
+	 * cc) { Camcorder item; for (int i = 0; i < camcorderList.size(); i++) { item =
+	 * camcorderList.get(i); if
+	 * (item.getAssetTag().equalsIgnoreCase(cc.getAssetTag())) return; } if
+	 * ((cc.getAssetTag().isEmpty()) || (cc.getDescription().isEmpty())) { return; }
+	 * 
+	 * camcorderList.add(cc); }
+	 * 
+	 * public static Chromebook inputChromebook() { String tag =
+	 * Helper.readString("Enter asset tag > "); String description =
+	 * Helper.readString("Enter description > "); String os =
+	 * Helper.readString("Enter os >"); Chromebook cb = new Chromebook(tag,
+	 * description, os);
+	 * 
+	 * return cb;
+	 * 
+	 * }
+	 * 
+	 * public static void addChromebook(ArrayList<Chromebook> chromebookList,
+	 * Chromebook cb) { Chromebook item; for (int i = 0; i < chromebookList.size();
+	 * i++) { item = chromebookList.get(i); if
+	 * (item.getAssetTag().equalsIgnoreCase(cb.getAssetTag())) return; }
+	 * 
+	 * if ((cb.getAssetTag().isEmpty()) || (cb.getDescription().isEmpty())) {
+	 * return; }
+	 * 
+	 * chromebookList.add(cb);
+	 * 
+	 * }
 	 */
-		  
+
 	// ================================= Option 3 User Management (CRUD - Update) //
-	 // ================================= public static boolean//
-	 	public static void addUsers(ArrayList<Users> usersList, Users newUser) {
+	// ================================= public static boolean//
+	public static void addUsers(ArrayList<Users> usersList, Users newUser) {
 		String newUserName = newUser.getName();
 
 		for (Users existingUsers : usersList) {
 			if (existingUsers.getName().equalsIgnoreCase(newUserName)) {
-				System.out.println(
-						"User '" + newUserName + "' already exists. Duplicate Users are not allowed.");
+				System.out.println("User '" + newUserName + "' already exists. Duplicate Users are not allowed.");
 				return;
 			}
 		}
@@ -255,8 +255,8 @@ public class C206_CaseStudy {
 
 		for (int i = 0; i < usersList.size(); i++) {
 
-			output += String.format("%-21s %-21s %-10s\n", usersList.get(i).getName(),
-					usersList.get(i).getNric(), usersList.get(i).getContactNumber());
+			output += String.format("%-21s %-21s %-10s\n", usersList.get(i).getName(), usersList.get(i).getNric(),
+					usersList.get(i).getContactNumber());
 
 		}
 		return output;
@@ -281,55 +281,55 @@ public class C206_CaseStudy {
 		System.out.println("User '" + nric + "' not found.");
 	}
 
-	}
-	/*
-	  // ================================= Option 4 Return an item (CRUD - //
-	  Update)================================= public static boolean
-	  doReturnCamcorder(ArrayList<Camcorder> camcorderList, String tag) { boolean
-	  isReturned = false;
-	  
-	  if (tag.isEmpty()) return false;
-	 
-	  for (int i = 0; i < camcorderList.size(); i++) { if
-	  (tag.equalsIgnoreCase(camcorderList.get(i).getAssetTag()) &&
-	  camcorderList.get(i).getIsAvailable() == false) {
-	  camcorderList.get(i).setIsAvailable(true);
-	  camcorderList.get(i).setDueDate(""); isReturned = true;
-	  
-	  } } return isReturned;
-	  
-	 }
-	  
-	  public static void returnCamcorder(ArrayList<Camcorder> camcorderList) {
-	  C206_CaseStudy.viewAllCamcorder(camcorderList); String tag =
-	  Helper.readString("Enter asset tag > "); Boolean isReturned =
-	  doReturnCamcorder(camcorderList, tag);
-	  
-	  if (isReturned == false) { System.out.println("Invalid asset tag"); } else {
-	  System.out.println("Camcorder " + tag + " returned"); } }
-	  
-	  public static boolean doReturnChromebook(ArrayList<Chromebook>
-	  chromebookList, String tag) { boolean isReturned = false;
-	  
-	  if (tag.isEmpty()) return false;
-	 
-	  for (int i = 0; i < chromebookList.size(); i++) { if
-	  (tag.equalsIgnoreCase(chromebookList.get(i).getAssetTag()) &&
-	  chromebookList.get(i).getIsAvailable() == false) {
-	  chromebookList.get(i).setIsAvailable(true);
-	  chromebookList.get(i).setDueDate(""); isReturned = true;
-	  
-	  } } return isReturned;
-	  
-	  }
-	 
-	  public static void returnChromebook(ArrayList<Chromebook> chromebookList) {
-	  C206_CaseStudy.viewAllChromebook(chromebookList); String tag =
-	  Helper.readString("Enter asset tag > "); Boolean isReturned =
-	  doReturnChromebook(chromebookList, tag);
-	  
-	  if (isReturned == false) { System.out.println("Invalid asset tag"); } else {
-	  System.out.println("Chromebook " + tag + " returned"); }
-	 
-	  } }
-	 */
+}
+/*
+ * // ================================= Option 4 Return an item (CRUD - //
+ * Update)================================= public static boolean
+ * doReturnCamcorder(ArrayList<Camcorder> camcorderList, String tag) { boolean
+ * isReturned = false;
+ * 
+ * if (tag.isEmpty()) return false;
+ * 
+ * for (int i = 0; i < camcorderList.size(); i++) { if
+ * (tag.equalsIgnoreCase(camcorderList.get(i).getAssetTag()) &&
+ * camcorderList.get(i).getIsAvailable() == false) {
+ * camcorderList.get(i).setIsAvailable(true);
+ * camcorderList.get(i).setDueDate(""); isReturned = true;
+ * 
+ * } } return isReturned;
+ * 
+ * }
+ * 
+ * public static void returnCamcorder(ArrayList<Camcorder> camcorderList) {
+ * C206_CaseStudy.viewAllCamcorder(camcorderList); String tag =
+ * Helper.readString("Enter asset tag > "); Boolean isReturned =
+ * doReturnCamcorder(camcorderList, tag);
+ * 
+ * if (isReturned == false) { System.out.println("Invalid asset tag"); } else {
+ * System.out.println("Camcorder " + tag + " returned"); } }
+ * 
+ * public static boolean doReturnChromebook(ArrayList<Chromebook>
+ * chromebookList, String tag) { boolean isReturned = false;
+ * 
+ * if (tag.isEmpty()) return false;
+ * 
+ * for (int i = 0; i < chromebookList.size(); i++) { if
+ * (tag.equalsIgnoreCase(chromebookList.get(i).getAssetTag()) &&
+ * chromebookList.get(i).getIsAvailable() == false) {
+ * chromebookList.get(i).setIsAvailable(true);
+ * chromebookList.get(i).setDueDate(""); isReturned = true;
+ * 
+ * } } return isReturned;
+ * 
+ * }
+ * 
+ * public static void returnChromebook(ArrayList<Chromebook> chromebookList) {
+ * C206_CaseStudy.viewAllChromebook(chromebookList); String tag =
+ * Helper.readString("Enter asset tag > "); Boolean isReturned =
+ * doReturnChromebook(chromebookList, tag);
+ * 
+ * if (isReturned == false) { System.out.println("Invalid asset tag"); } else {
+ * System.out.println("Chromebook " + tag + " returned"); }
+ * 
+ * } }
+ */
