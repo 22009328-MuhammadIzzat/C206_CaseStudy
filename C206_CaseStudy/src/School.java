@@ -19,6 +19,14 @@ public class School {
 		this.contactNumber = contactNumber;
 	}
 
+	public String toString() {
+		String itemInfo =  String.format("%-30s %-30s %-10s", schoolName,
+				schoolAddress, 
+				contactNumber
+				);
+		// Write your codes here
+		return itemInfo;
+	}
 	public String getSchoolName() {
 		return schoolName;
 	}

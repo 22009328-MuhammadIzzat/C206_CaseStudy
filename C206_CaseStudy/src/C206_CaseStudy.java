@@ -34,7 +34,7 @@ public class C206_CaseStudy {
 					String name = Helper.readString("Enter School Name to delete: ");
 					C206_CaseStudy.deleteSchoolByName(SchoolList, name);
 					System.out.println("School deleted");
-					
+
 				}
 			} else if (option == 2) {
 				// Add a new item
@@ -137,11 +137,12 @@ public class C206_CaseStudy {
 			if (existingSchool.getSchoolName().equalsIgnoreCase(newSchoolName)) {
 				return;
 			}
-			if (newSchool.getContactNumber().isEmpty() || newSchool.getSchoolAddress().isEmpty()
-					|| newSchool.getSchoolName().isEmpty()) {
+			Boolean isContactNumberEmpty = newSchool.getContactNumber().isEmpty();
+			Boolean isAddressOfNewSchoolEmpty = newSchool.getSchoolAddress().isEmpty();
+			Boolean isSchoolNameEmpty = newSchool.getSchoolName().isEmpty();
+			if (isContactNumberEmpty || isAddressOfNewSchoolEmpty || isSchoolNameEmpty) {
 				return;
 			}
-
 		}
 
 		// If no duplicate is found, add the new school to the list
@@ -154,8 +155,7 @@ public class C206_CaseStudy {
 
 		for (int i = 0; i < SchoolList.size(); i++) {
 
-			output += String.format("%-30s %-30s %-10s\n", SchoolList.get(i).getSchoolName(),
-					SchoolList.get(i).getSchoolAddress(), SchoolList.get(i).getContactNumber());
+			output += SchoolList.get(i).toString();
 
 		}
 		return output;
@@ -163,8 +163,7 @@ public class C206_CaseStudy {
 
 	public static void viewAllSchool(ArrayList<School> SchoolList) {
 		C206_CaseStudy.setHeader("SCHOOL LIST");
-		String output = String.format("%-30s %-30s %-10s\n", "SCHOOL-NAME", "SCHOOL-ADDRESS",
-				"SCHOOL-CONTACT-NUMBER");
+		String output = String.format("%-30s %-30s %-10s\n", "SCHOOL-NAME", "SCHOOL-ADDRESS", "SCHOOL-CONTACT-NUMBER");
 		output += retrieveAllSchool(SchoolList);
 		System.out.println(output);
 	}
@@ -172,7 +171,10 @@ public class C206_CaseStudy {
 	public static void deleteSchoolByName(ArrayList<School> schoolList, String schoolName) {
 		for (int i = 0; i < schoolList.size(); i++) {
 			School school = schoolList.get(i);
-			if (school.getSchoolName().equalsIgnoreCase(schoolName)) {
+			//Check if School is in the system
+			Boolean SchoolNameInSystem = school.getSchoolName().equalsIgnoreCase(schoolName);
+			
+			if (SchoolNameInSystem) {
 				schoolList.remove(i);
 				return;
 			}

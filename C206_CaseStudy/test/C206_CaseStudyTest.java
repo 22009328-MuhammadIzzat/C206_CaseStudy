@@ -29,6 +29,7 @@ public class C206_CaseStudyTest {
 
 	@Test
 	public void testAddSchool() {
+		// Test Case 1: Normal Condition
 		// School list is not null and it is empty
 		assertNotNull("Test if there is a valid School arraylist to add to", SchoolList);
 		assertEquals("Test that the School arraylist is empty.", 0, SchoolList.size());
@@ -36,7 +37,7 @@ public class C206_CaseStudyTest {
 		// Given an empty list, after adding 1 item, the size of the list is 1
 		C206_CaseStudy.addSchool(SchoolList, School1);
 		assertEquals("Test that the School arraylist size is 1.", 1, SchoolList.size());
-
+		// Test Case 2: Boundary Condition
 		// Add another school
 		C206_CaseStudy.addSchool(SchoolList, School2);
 		assertEquals("Test that the School arraylist size is now 2.", 2, SchoolList.size());
@@ -47,7 +48,7 @@ public class C206_CaseStudyTest {
 		// Add a school that already exists in the list
 		C206_CaseStudy.addSchool(SchoolList, School2);
 		assertEquals("Test that the School arraylist size is unchanged.", 2, SchoolList.size());
-
+		// Test Case 3: Error Condition
 		// Add a school with missing details
 		School school_missing = new School("School003", "", "98765432");
 		C206_CaseStudy.addSchool(SchoolList, school_missing);
