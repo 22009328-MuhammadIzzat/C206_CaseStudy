@@ -20,7 +20,7 @@ public class School {
 	}
 
 	public String toString() {
-		String itemInfo =  String.format("%-30s %-30s %-10s", schoolName,
+		String itemInfo =  String.format("%-30s %-30s %-10s\n", schoolName,
 				schoolAddress, 
 				contactNumber
 				);
