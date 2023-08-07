@@ -19,20 +19,20 @@ public class C206_CaseStudy {
 				C206_CaseStudy.schoolManagementMenu();
 				int option1 = Helper.readInt("Choose 1 Option: ");
 				if (option1 == 1) {
-					String name = Helper.readString("Enter School Name: ");
-					String Address = Helper.readString("Enter School Address: ");
-					String ContactNumber = Helper.readString("Enter School Contact Number: ");
-					School ToBeAdded = new School(name, Address, ContactNumber);
 
+					School ToBeAdded = inputSchool();
 					C206_CaseStudy.addSchool(SchoolList, ToBeAdded);
 					System.out.println("School added");
+					
+					
 				} else if (option1 == 2) {
 					// View all schools
 					C206_CaseStudy.viewAllSchool(SchoolList);
 				} else if (option1 == 3) {
 					// Delete a school
-					String name = Helper.readString("Enter School Name to delete: ");
-					C206_CaseStudy.deleteSchoolByName(SchoolList, name);
+					
+					String NameOfSchoolToBeDeleted = Helper.readString("Enter School Name to delete: ");
+					C206_CaseStudy.deleteSchoolByName(SchoolList, NameOfSchoolToBeDeleted);
 					System.out.println("School deleted");
 
 				}
@@ -130,6 +130,17 @@ public class C206_CaseStudy {
 
 	// ================================= Option 1 For school management
 	// =================================
+
+	public static School inputSchool() {
+		String SchoolName = Helper.readString("Enter asset tag > ");
+		String SchoolAddress = Helper.readString("Enter description > ");
+		String ContactNumber = Helper.readString("Enter operating system > ");
+
+		School Sch = new School(SchoolName, SchoolAddress, ContactNumber);
+		return Sch;
+
+	}
+
 	public static void addSchool(ArrayList<School> schoolList, School newSchool) {
 		String newSchoolName = newSchool.getSchoolName();
 
@@ -171,9 +182,9 @@ public class C206_CaseStudy {
 	public static void deleteSchoolByName(ArrayList<School> schoolList, String schoolName) {
 		for (int i = 0; i < schoolList.size(); i++) {
 			School school = schoolList.get(i);
-			//Check if School is in the system
+			// Check if School is in the system
 			Boolean SchoolNameInSystem = school.getSchoolName().equalsIgnoreCase(schoolName);
-			
+
 			if (SchoolNameInSystem) {
 				schoolList.remove(i);
 				return;
