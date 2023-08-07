@@ -132,9 +132,9 @@ public class C206_CaseStudy {
 	// =================================
 
 	public static School inputSchool() {
-		String SchoolName = Helper.readString("Enter asset tag > ");
-		String SchoolAddress = Helper.readString("Enter description > ");
-		String ContactNumber = Helper.readString("Enter operating system > ");
+		String SchoolName = Helper.readString("Enter School Name > ");
+		String SchoolAddress = Helper.readString("Enter School Address > ");
+		String ContactNumber = Helper.readString("Enter Contact Number Of School > ");
 
 		School Sch = new School(SchoolName, SchoolAddress, ContactNumber);
 		return Sch;
