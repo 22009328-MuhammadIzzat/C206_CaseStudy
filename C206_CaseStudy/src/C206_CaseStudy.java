@@ -5,7 +5,7 @@ public class C206_CaseStudy {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ArrayList<School> SchoolList = new ArrayList<School>();
-		SchoolList.add(new School("CC001", "Sony HDR-CX405", "123"));
+		SchoolList.add(new School("Granite Bay School", "Tampines St 78", "87654321"));
 
 		int option = 0;
 
@@ -117,16 +117,7 @@ public class C206_CaseStudy {
 		Helper.line(80, "-");
 	}
 
-	public static String showAvailability(boolean isAvailable) {
-		String avail;
 
-		if (isAvailable == true) {
-			avail = "Yes";
-		} else {
-			avail = "No";
-		}
-		return avail;
-	}
 
 	// ================================= Option 1 For school management
 	// =================================
