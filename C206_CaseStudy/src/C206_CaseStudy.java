@@ -3,113 +3,255 @@ import java.util.ArrayList;
 public class C206_CaseStudy {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		//School ArrayList
 		ArrayList<School> SchoolList = new ArrayList<School>();
 		SchoolList.add(new School("CC001", "Sony HDR-CX405", "123"));
+		
+		//Vendor ArrayList
+		ArrayList<Vendor> VendorList = new ArrayList<Vendor>();
+		VendorList.add(new Vendor("ABCVendor", "Western cuisine", "456"));
 
 		int option = 0;
 
 		while (option != 5) {
 
-			C206_CaseStudy.menu();
+			C206_CaseStudy.mainMenu();
 			option = Helper.readInt("Enter an option > ");
+			
+			if (option == 1) { // administrator 
+				C206_CaseStudy.administratorMenu();
+				int adOption = Helper.readInt("Choose 1 option: ");
+				
+				if (adOption == 1) { // schoolManagement
+					C206_CaseStudy.schoolManagementMenu();
+					int schOption = Helper.readInt("Choose 1 Option: ");
+					if (schOption == 1) {
+						// Add a school
+						String name = Helper.readString("Enter School Name: ");
+						String Address = Helper.readString("Enter School Address: ");
+						String ContactNumber = Helper.readString("Enter School Contact Number: ");
+						School ToBeAdded = new School(name, Address, ContactNumber);
 
-			if (option == 1) {
-				// View all items
-				C206_CaseStudy.schoolManagementMenu();
-				int option1 = Helper.readInt("Choose 1 Option: ");
-				if (option1 == 1) {
-					String name = Helper.readString("Enter School Name: ");
-					String Address = Helper.readString("Enter School Address: ");
-					String ContactNumber = Helper.readString("Enter School Contact Number: ");
-					School ToBeAdded = new School(name, Address, ContactNumber);
+						C206_CaseStudy.addSchool(SchoolList, ToBeAdded);
+						System.out.println("School added");
+						
+						} else if (schOption == 2) {
+							// View all schools
+							C206_CaseStudy.viewAllSchool(SchoolList);
+						
+						} else if (schOption == 3){
+							// Delete a school
+							String name = Helper.readString("Enter School Name to delete: ");
+							C206_CaseStudy.deleteSchoolByName(SchoolList, name);
+							System.out.println("School deleted");
+							
+						} else {
+							System.out.println("Invalid Option!");
+						}
 
-					C206_CaseStudy.addSchool(SchoolList, ToBeAdded);
-					System.out.println("School added");
-				} else if (option1 == 2) {
-					// View all schools
-					C206_CaseStudy.viewAllSchool(SchoolList);
-				} else if (option1 == 3) {
-					// Delete a school
-					String name = Helper.readString("Enter School Name to delete: ");
-					C206_CaseStudy.deleteSchoolByName(SchoolList, name);
-					System.out.println("School deleted");
-
+				} else if (adOption == 2) { //userManagement
+					C206_CaseStudy.userManagementMenu();
+					int userOption = Helper.readInt("Choose 1 option: ");
+					if (userOption == 1) {
+						// Add user
+						
+					} else if (userOption == 2) {
+						// View all user
+						
+					} else if (userOption == 3){
+						// Delete user
+						
+					} else {
+						System.out.println("Invalid Option!");
+					}
+						
+				} else if (adOption == 3){ // vendorManagement
+					C206_CaseStudy.vendorManagementMenu();
+					int vendorOption = Helper.readInt("Choose 1 option: ");
+					if (vendorOption == 1) {
+						// Add vendor
+						String vendorName = Helper.readString("Enter Vendor Name: ");
+						String vendorDescription = Helper.readString("Enter Description Of Vendor (optional): ");
+						String vendorContactNumber = Helper.readString("Enter Vendor's Contact Number: ");
+						Vendor vendorToBeAdded = new Vendor(vendorName, vendorDescription, vendorContactNumber);
+						
+						C206_CaseStudy.addVendor(VendorList, vendorToBeAdded);
+						System.out.println("Vendor successfully added");
+						
+					} else if (vendorOption == 2) { 
+						// View all vendors
+						C206_CaseStudy.viewAllVendor(VendorList);
+						
+					} else if (vendorOption == 3){
+						// Delete a vendor
+						String vendorName = Helper.readString("Enter Vendor Name To Delete: ");
+						C206_CaseStudy.deleteVendorByName(VendorList, vendorName);
+						System.out.println("Vendor successfully deleted");
+						
+					} else {
+						System.out.println("Invalid Option!");
+					}
+				} else {
+					System.out.println("Invalid Option!");
 				}
-			} else if (option == 2) {
-				// Add a new item
-
+				
+			} else if (option == 2) { // user 
+				C206_CaseStudy.userMenu();
+				int userOption = Helper.readInt("Choose 1 option: ");
+				
+				if (userOption == 1) {
+					// codes to create new user 
+					
+				} else if (userOption == 2) { // orderManagement
+					C206_CaseStudy.orderManagementMenu();
+					int userOption1 = Helper.readInt("Choose 1 option: ");
+					if (userOption1 == 1) {
+						// Add order
+						
+					} else if (userOption1 == 2) {
+						// View all order
+						
+					} else if (userOption1 == 3){
+						// Delete order
+						
+					} else {
+						System.out.println("Invalid Option!");
+					}
+				
+				} else if (userOption == 3) { 
+					// View all vendors
+					C206_CaseStudy.viewAllVendor(VendorList);
+				
+				} else if (userOption == 4){
+					C206_CaseStudy.paymentManagementMenu();
+					int userOption2 = Helper.readInt("Choose 1 option: ");
+					if (userOption2 == 1) {
+						// Add payment
+					
+					} else if (userOption2 == 2){
+						// View payment
+						
+					} else {
+						System.out.println("Invalid Option!");
+					}
+					
+				} else {
+					System.out.println("Invalid Option!");
+				}
+				
+			} else if (option == 3) { // vendor 
 				C206_CaseStudy.menusManagementMenu();
-
-			} else if (option == 3) {
-				// Loan item
-				C206_CaseStudy.userManagementMenu();
-
-			} else if (option == 4) {
-				C206_CaseStudy.orderManagementMenu();
-
+				int vendorOption = Helper.readInt("Choose 1 option: ");
+				if (vendorOption == 1) {
+					// Add menu
+					
+				} else if (vendorOption == 2) {
+					// View menu
+				
+				} else if (vendorOption == 3){
+					// Delete menu
+					
+				} else {
+					System.out.println("Invalid Option!");
+				}
+			
+			} else if (option == 4) { // payment gateway
+				System.out.println("Delete payment");
+				// codes for delete payment
+			
 			} else if (option == 5) {
-				C206_CaseStudy.vendorManagementMenu();
-
+				System.out.println("Thank you for using School Lunch Box Online Ordering System!");
+				
+			} else {
+				System.out.println("Invalid option!");
 			}
 		}
-
 	}
-
-	public static void menu() {
-		C206_CaseStudy.setHeader("School Lunch Box Online Ordering System");
-		System.out.println("1. School Management");
-		System.out.println("2. Menus Management");
-		System.out.println("3. User Management");
-		System.out.println("4. Order Management");
-		System.out.println("5. Payment Management");
-		System.out.println("6. Vendor Management");
+			
+	// main menu / login page
+	public static void mainMenu() {
+		C206_CaseStudy.setHeader("School Lunch Box Online Ordering System Login Page");
+		System.out.println("1. Administrator");
+		System.out.println("2. User");
+		System.out.println("3. Vendor");
+		System.out.println("4. Payment Gateway");
+		System.out.println("5. End");
+	}
+	
+	// administrator menu
+	public static void administratorMenu() {
+		System.out.println("1. School Management");;
+		System.out.println("2. User Management");;
+		System.out.println("3. Vendor Management");
 		Helper.line(80, "-");
 	}
+	
+	// user menu
+	public static void userMenu() {
+		System.out.println("1. Create New User Account");;
+		System.out.println("2. Order");
+		System.out.println("3. View all vendors");
+		System.out.println("4. Payment");
+		Helper.line(80, "-");
+	}
+	
 
+	// start of sub menus for administrators
 	public static void schoolManagementMenu() {
 		System.out.println("School Management Menu:");
-		System.out.println("1. Add School");
-		System.out.println("2. View School Details");
-		System.out.println("3. Delete School");
+		System.out.println("1. Add a new school");
+		System.out.println("2. View all schools");
+		System.out.println("3. Delete an existing school");
 		Helper.line(80, "-");
 
 	}
-
-	public static void menusManagementMenu() {
-		System.out.println("Menus Management Menu:");
-		System.out.println("1. Add Menu Item");
-		System.out.println("2. View Menu Items");
-		System.out.println("3. Delete Menu Item");
-		Helper.line(80, "-");
-
-	}
-
+	
 	public static void userManagementMenu() {
 		System.out.println("User Management Menu:");
-		System.out.println("1. Add User");
-		System.out.println("2. View User Details");
-		System.out.println("3. Delete User");
+		System.out.println("1. Add a new user");
+		System.out.println("2. View all users");
+		System.out.println("3. Delete an existing user");
 		Helper.line(80, "-");
 
 	}
-
-	public static void orderManagementMenu() {
-		System.out.println("Order Management Menu:");
-		System.out.println("1. Add Order");
-		System.out.println("2. View Orders");
-		System.out.println("3. Delete Order");
-		Helper.line(80, "-");
-
-	}
-
+	
 	public static void vendorManagementMenu() {
 		System.out.println("Vendor Management Menu:");
-		System.out.println("1. Add Vendor");
-		System.out.println("2. View Vendor Details");
-		System.out.println("3. Delete Vendor");
+		System.out.println("1. Add a new vendor");
+		System.out.println("2. View all vendors");
+		System.out.println("3. Delete an existing vendor");
 		Helper.line(80, "-");
 	}
+	// end of sub menus for administrators 
+	
+	
+	// start of sub menus for user 
+	public static void orderManagementMenu() {
+		System.out.println("Order Management Menu:");
+		System.out.println("1. Add a new order");
+		System.out.println("2. View all orders");
+		System.out.println("3. Delete an existing order");
+		Helper.line(80, "-");
+
+	}
+	
+	public static void paymentManagementMenu() {
+		System.out.println("1. Add new payment");
+		System.out.println("2. View all payement");
+	}
+	// end of sub menus for user 
+	
+	
+	// start of sub menus for vendor 
+	public static void menusManagementMenu() {
+		System.out.println("Menus Management Menu:");
+		System.out.println("1. Add a new menu");
+		System.out.println("2. View all menus");
+		System.out.println("3. Delete an existing menu");
+		Helper.line(80, "-");
+
+	}
+	// end of sub menus for vendor 
 
 	public static void setHeader(String header) {
 		Helper.line(80, "-");
@@ -128,7 +270,7 @@ public class C206_CaseStudy {
 		return avail;
 	}
 
-	// ================================= Option 1 For school management
+	// ================================= For school management
 	// =================================
 	public static void addSchool(ArrayList<School> schoolList, School newSchool) {
 		String newSchoolName = newSchool.getSchoolName();
@@ -181,58 +323,8 @@ public class C206_CaseStudy {
 		}
 	}
 
-	/*
-	 * public static void viewAllChromebook(ArrayList<Chromebook> chromebookList) {
-	 * // write your code here C206_CaseStudy.setHeader("CHROMEBOOK LIST"); String
-	 * output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ASSET TAG",
-	 * "DESCRIPTION", "AVAILABLE", "DUE DATE", "OS"); output +=
-	 * retrieveAllChromebook(chromebookList);
-	 * 
-	 * System.out.println(output); }
-	 * 
-	 * // ================================= Option 2 Add an item (CRUD - Create) //
-	 * ================================= public static Camcorder inputCamcorder() {
-	 * String tag = Helper.readString("Enter asset tag > "); String description =
-	 * Helper.readString("Enter description > "); int zoom =
-	 * Helper.readInt("Enter optical zoom > ");
-	 * 
-	 * Camcorder cc = new Camcorder(tag, description, zoom); return cc;
-	 * 
-	 * }
-	 * 
-	 * public static void addCamcorder(ArrayList<Camcorder> camcorderList, Camcorder
-	 * cc) { Camcorder item; for (int i = 0; i < camcorderList.size(); i++) { item =
-	 * camcorderList.get(i); if
-	 * (item.getAssetTag().equalsIgnoreCase(cc.getAssetTag())) return; } if
-	 * ((cc.getAssetTag().isEmpty()) || (cc.getDescription().isEmpty())) { return; }
-	 * 
-	 * camcorderList.add(cc); }
-	 * 
-	 * public static Chromebook inputChromebook() { String tag =
-	 * Helper.readString("Enter asset tag > "); String description =
-	 * Helper.readString("Enter description > "); String os =
-	 * Helper.readString("Enter os >"); Chromebook cb = new Chromebook(tag,
-	 * description, os);
-	 * 
-	 * return cb;
-	 * 
-	 * }
-	 * 
-	 * public static void addChromebook(ArrayList<Chromebook> chromebookList,
-	 * Chromebook cb) { Chromebook item; for (int i = 0; i < chromebookList.size();
-	 * i++) { item = chromebookList.get(i); if
-	 * (item.getAssetTag().equalsIgnoreCase(cb.getAssetTag())) return; }
-	 * 
-	 * if ((cb.getAssetTag().isEmpty()) || (cb.getDescription().isEmpty())) {
-	 * return; }
-	 * 
-	 * chromebookList.add(cb);
-	 * 
-	 * }
-	 */
-
-	// ================================= Option 3 User Management (CRUD - Update) //
-	// ================================= public static boolean//
+	// ================================= For user management 
+	// ================================= 
 	public static void addUsers(ArrayList<Users> usersList, Users newUser) {
 		String newUserName = newUser.getName();
 
@@ -243,7 +335,7 @@ public class C206_CaseStudy {
 			}
 		}
 
-		// If no duplicate is found, add the new school to the list
+		// If no duplicate is found, add the new user to the list
 		usersList.add(newUser);
 		System.out.println("User '" + newUserName + "' has been added.");
 	}
@@ -279,55 +371,68 @@ public class C206_CaseStudy {
 		System.out.println("User '" + nric + "' not found.");
 	}
 
-}
-/*
- * // ================================= Option 4 Return an item (CRUD - //
- * Update)================================= public static boolean
- * doReturnCamcorder(ArrayList<Camcorder> camcorderList, String tag) { boolean
- * isReturned = false;
- * 
- * if (tag.isEmpty()) return false;
- * 
- * for (int i = 0; i < camcorderList.size(); i++) { if
- * (tag.equalsIgnoreCase(camcorderList.get(i).getAssetTag()) &&
- * camcorderList.get(i).getIsAvailable() == false) {
- * camcorderList.get(i).setIsAvailable(true);
- * camcorderList.get(i).setDueDate(""); isReturned = true;
- * 
- * } } return isReturned;
- * 
- * }
- * 
- * public static void returnCamcorder(ArrayList<Camcorder> camcorderList) {
- * C206_CaseStudy.viewAllCamcorder(camcorderList); String tag =
- * Helper.readString("Enter asset tag > "); Boolean isReturned =
- * doReturnCamcorder(camcorderList, tag);
- * 
- * if (isReturned == false) { System.out.println("Invalid asset tag"); } else {
- * System.out.println("Camcorder " + tag + " returned"); } }
- * 
- * public static boolean doReturnChromebook(ArrayList<Chromebook>
- * chromebookList, String tag) { boolean isReturned = false;
- * 
- * if (tag.isEmpty()) return false;
- * 
- * for (int i = 0; i < chromebookList.size(); i++) { if
- * (tag.equalsIgnoreCase(chromebookList.get(i).getAssetTag()) &&
- * chromebookList.get(i).getIsAvailable() == false) {
- * chromebookList.get(i).setIsAvailable(true);
- * chromebookList.get(i).setDueDate(""); isReturned = true;
- * 
- * } } return isReturned;
- * 
- * }
- * 
- * public static void returnChromebook(ArrayList<Chromebook> chromebookList) {
- * C206_CaseStudy.viewAllChromebook(chromebookList); String tag =
- * Helper.readString("Enter asset tag > "); Boolean isReturned =
- * doReturnChromebook(chromebookList, tag);
- * 
- * if (isReturned == false) { System.out.println("Invalid asset tag"); } else {
- * System.out.println("Chromebook " + tag + " returned"); }
- * 
- * } }
- */
+	// ================================= For menu management
+	// =================================
+	
+	// ================================= For order management
+	// =================================
+	
+	// ================================= For payment management
+	// =================================
+
+	// ================================= For vendor management
+	// =================================
+	public static void addVendor(ArrayList<Vendor> VendorList, Vendor newVendor) {
+		String newVendorName = newVendor.getVendorName();
+
+		for (Vendor existingVendor : VendorList) {
+			if (existingVendor.getVendorName().equalsIgnoreCase(newVendorName)) {
+				System.out.println("Vendor '" + newVendorName + "' already exists. Duplicate names are not allowed.");
+				return;
+			}
+			Boolean isVendorNameEmpty = newVendor.getVendorName().isEmpty();
+			Boolean isVendorContactNumberEmpty = newVendor.getContactNumber().isEmpty();
+			if (isVendorNameEmpty || isVendorContactNumberEmpty) {
+				System.out.println("Please fill in all neccessary fields!");
+				return;
+			}
+		}
+		
+		// If no duplicate is found, add the new vendor to the list
+		VendorList.add(newVendor);
+
+		}
+
+		public static String retrieveAllVendor(ArrayList<Vendor> VendorList) {
+			String output = "";
+
+			for (int i = 0; i < VendorList.size(); i++) {
+
+				output += VendorList.get(i).toString();
+
+			}
+			return output;
+		}
+
+		public static void viewAllVendor(ArrayList<Vendor> VendorList) {
+			C206_CaseStudy.setHeader("VENDORS LIST");
+			String output = String.format("%-30s %-30s %-10s\n", "VENDOR-NAME", "VENDOR-DESCRIPTION", "VENDOR-CONTACT-NUMBER");
+			output += retrieveAllVendor(VendorList);
+			System.out.println(output);
+		}
+
+		public static void deleteVendorByName(ArrayList<Vendor> VendorList, String VendorName) {
+			for (int i = 0; i < VendorList.size(); i++) {
+				Vendor vendor = VendorList.get(i);
+				
+				//Check if deleted vendor is still in the system
+				Boolean VendorNameInSystem = vendor.getVendorName().equalsIgnoreCase(VendorName);
+		
+				if (VendorNameInSystem) {
+					VendorList.remove(i);
+					return;
+				}
+			}
+		}
+	}
+
