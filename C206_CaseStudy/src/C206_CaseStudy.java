@@ -5,11 +5,14 @@ public class C206_CaseStudy {
 	public static void main(String[] args) {
 		//School ArrayList
 		ArrayList<School> SchoolList = new ArrayList<School>();
+
 		SchoolList.add(new School("CC001", "Sony HDR-CX405", "123"));
 		
 		//Vendor ArrayList
 		ArrayList<Vendor> VendorList = new ArrayList<Vendor>();
 		VendorList.add(new Vendor("ABCVendor", "Western cuisine", "456"));
+
+		SchoolList.add(new School("Granite Bay School", "Tampines St 78", "87654321"));
 
 		int option = 0;
 
@@ -32,6 +35,7 @@ public class C206_CaseStudy {
 						String ContactNumber = Helper.readString("Enter School Contact Number: ");
 						School ToBeAdded = new School(name, Address, ContactNumber);
 
+
 						C206_CaseStudy.addSchool(SchoolList, ToBeAdded);
 						System.out.println("School added");
 						
@@ -48,6 +52,12 @@ public class C206_CaseStudy {
 						} else {
 							System.out.println("Invalid Option!");
 						}
+
+			if (option == 1) {
+				// View all items
+				C206_CaseStudy.schoolManagementMenu();
+				int option1 = Helper.readInt("Choose 1 Option: ");
+				if (option1 == 1) {
 
 				} else if (adOption == 2) { //userManagement
 					C206_CaseStudy.userManagementMenu();
@@ -93,6 +103,12 @@ public class C206_CaseStudy {
 					}
 				} else {
 					System.out.println("Invalid Option!");
+
+					School ToBeAdded = inputSchool();
+					C206_CaseStudy.addSchool(SchoolList, ToBeAdded);
+					System.out.println("School added");
+				}
+					
 				}
 				
 			} else if (option == 2) { // user 
@@ -165,7 +181,8 @@ public class C206_CaseStudy {
 			} else {
 				System.out.println("Invalid option!");
 			}
-		}
+				}
+			}
 	}
 			
 	// main menu / login page
@@ -259,19 +276,21 @@ public class C206_CaseStudy {
 		Helper.line(80, "-");
 	}
 
-	public static String showAvailability(boolean isAvailable) {
-		String avail;
 
-		if (isAvailable == true) {
-			avail = "Yes";
-		} else {
-			avail = "No";
-		}
-		return avail;
-	}
 
 	// ================================= For school management
 	// =================================
+
+	public static School inputSchool() {
+		String SchoolName = Helper.readString("Enter School Name > ");
+		String SchoolAddress = Helper.readString("Enter School Address > ");
+		String ContactNumber = Helper.readString("Enter Contact Number Of School > ");
+
+		School Sch = new School(SchoolName, SchoolAddress, ContactNumber);
+		return Sch;
+
+	}
+
 	public static void addSchool(ArrayList<School> schoolList, School newSchool) {
 		String newSchoolName = newSchool.getSchoolName();
 
@@ -313,9 +332,9 @@ public class C206_CaseStudy {
 	public static void deleteSchoolByName(ArrayList<School> schoolList, String schoolName) {
 		for (int i = 0; i < schoolList.size(); i++) {
 			School school = schoolList.get(i);
-			//Check if School is in the system
+			// Check if School is in the system
 			Boolean SchoolNameInSystem = school.getSchoolName().equalsIgnoreCase(schoolName);
-			
+
 			if (SchoolNameInSystem) {
 				schoolList.remove(i);
 				return;
