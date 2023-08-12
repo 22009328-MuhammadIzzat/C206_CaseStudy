@@ -30,13 +30,7 @@ public class C206_CaseStudy {
 					int schOption = Helper.readInt("Choose 1 Option: ");
 					if (schOption == 1) {
 						// Add a school
-						String name = Helper.readString("Enter School Name: ");
-						String Address = Helper.readString("Enter School Address: ");
-						String ContactNumber = Helper.readString("Enter School Contact Number: ");
-						School ToBeAdded = new School(name, Address, ContactNumber);
-
-
-						C206_CaseStudy.addSchool(SchoolList, ToBeAdded);
+						C206_CaseStudy.addSchool(SchoolList, C206_CaseStudy.inputSchool());
 						System.out.println("School added");
 						
 						} else if (schOption == 2) {
@@ -45,8 +39,8 @@ public class C206_CaseStudy {
 						
 						} else if (schOption == 3){
 							// Delete a school
-							String name = Helper.readString("Enter School Name to delete: ");
-							C206_CaseStudy.deleteSchoolByName(SchoolList, name);
+							String nameOfSchooltoDelete = Helper.readString("Enter School Name to delete: ");
+							C206_CaseStudy.deleteSchoolByName(SchoolList, nameOfSchooltoDelete);
 							System.out.println("School deleted");
 							
 						} else {
