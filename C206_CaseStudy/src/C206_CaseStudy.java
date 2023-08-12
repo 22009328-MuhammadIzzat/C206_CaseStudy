@@ -16,7 +16,7 @@ public class C206_CaseStudy {
 		
 		//User Arraylist 
 		ArrayList<Users> UserList = new ArrayList<Users>();
-        UserList.add(new Users("Jane Tan","S12345A","91123456","T12345A"));
+        UserList.add(new Users("Jane Tan","S12345A","9123456","T12345A"));
 
 		int option = 0;
 
