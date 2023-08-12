@@ -13,6 +13,10 @@ public class C206_CaseStudy {
 		VendorList.add(new Vendor("ABCVendor", "Western cuisine", "456"));
 
 		SchoolList.add(new School("Granite Bay School", "Tampines St 78", "87654321"));
+		
+		//User Arraylist 
+		ArrayList<Users> UserList = new ArrayList<Users>();
+        UserList.add(new Users("Jane Tan","S12345A","91123456","T12345A"));
 
 		int option = 0;
 
@@ -59,11 +63,18 @@ public class C206_CaseStudy {
 					if (userOption == 1) {
 						// Add user
 						
+	                     C206_CaseStudy.addUsers(UserList, C206_CaseStudy.inputUsers());
+	                     System.out.println("User has been added");
+						
 					} else if (userOption == 2) {
 						// View all user
+						C206_CaseStudy.viewAllUsers(UserList);
 						
 					} else if (userOption == 3){
 						// Delete user
+						 String name = Helper.readString("Enter user Name to delete: ");
+							C206_CaseStudydraft.deleteUserByNric(UserList, name);
+							System.out.println("User deleted");
 						
 					} else {
 						System.out.println("Invalid Option!");
@@ -111,6 +122,12 @@ public class C206_CaseStudy {
 				
 				if (userOption == 1) {
 					// codes to create new user 
+					  String UserName = Helper.readString("Enter User Name > ");
+                      String UserNRIC = Helper.readString("Enter User NRIC > ");
+                      String UserContactNumber = Helper.readString("Enter User Contact Number > ");
+                      String UserChildNRIC = Helper.readString("Enter User Child NRIC > ");
+
+                      Users user = new Users(UserName, UserNRIC, UserContactNumber,UserChildNRIC);
 					
 				} else if (userOption == 2) { // orderManagement
 					C206_CaseStudy.orderManagementMenu();
@@ -338,6 +355,17 @@ public class C206_CaseStudy {
 
 	// ================================= For user management 
 	// ================================= 
+	
+	public static Users inputUsers() {
+		 String UserName = Helper.readString("Enter User Name > ");
+         String UserNRIC = Helper.readString("Enter User NRIC > ");
+         String UserContactNumber = Helper.readString("Enter User Contact Number > ");
+         String UserChildNRIC = Helper.readString("Enter User Child NRIC > ");
+
+         Users user = new Users(UserName, UserNRIC, UserContactNumber,UserChildNRIC);
+		 return user;
+
+	}
 	public static void addUsers(ArrayList<Users> usersList, Users newUser) {
 		String newUserName = newUser.getName();
 
