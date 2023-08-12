@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public class C206_CaseStudy {
-
 	public static void main(String[] args) {
-		//School ArrayList
+		// TODO Auto-generated method stub
+		
 		ArrayList<School> SchoolList = new ArrayList<School>();
 
 		SchoolList.add(new School("CC001", "Sony HDR-CX405", "123"));
@@ -13,6 +13,10 @@ public class C206_CaseStudy {
 		VendorList.add(new Vendor("ABCVendor", "Western cuisine", "456"));
 
 		SchoolList.add(new School("Granite Bay School", "Tampines St 78", "87654321"));
+		
+		//Menu ArrayList
+		ArrayList<VendorMenu> MenuList = new ArrayList<VendorMenu>();
+		MenuList.add(new VendorMenu("A1", "Breakfast menu"));
 
 		int option = 0;
 
@@ -20,165 +24,168 @@ public class C206_CaseStudy {
 
 			C206_CaseStudy.mainMenu();
 			option = Helper.readInt("Enter an option > ");
-			
-			if (option == 1) { // administrator 
+
+			if (option == 1) { // administrator
 				C206_CaseStudy.administratorMenu();
 				int adOption = Helper.readInt("Choose 1 option: ");
-				
+
 				if (adOption == 1) { // schoolManagement
 					C206_CaseStudy.schoolManagementMenu();
 					int schOption = Helper.readInt("Choose 1 Option: ");
+					while (schOption < 1 || schOption > 3) {
+						System.out.println("Invalid Option! Please try again.");
+						schOption = Helper.readInt("Choose 1 Option: ");
+					}
 					if (schOption == 1) {
 						// Add a school
 						C206_CaseStudy.addSchool(SchoolList, C206_CaseStudy.inputSchool());
 						System.out.println("School added");
-						
-						} else if (schOption == 2) {
-							// View all schools
-							C206_CaseStudy.viewAllSchool(SchoolList);
-						
-						} else if (schOption == 3){
-							// Delete a school
-							String nameOfSchooltoDelete = Helper.readString("Enter School Name to delete: ");
-							C206_CaseStudy.deleteSchoolByName(SchoolList, nameOfSchooltoDelete);
-							System.out.println("School deleted");
-							
-						} else {
-							System.out.println("Invalid Option!");
-						}
 
-			if (option == 1) {
-				// View all items
-				C206_CaseStudy.schoolManagementMenu();
-				int option1 = Helper.readInt("Choose 1 Option: ");
-				if (option1 == 1) {
+					} else if (schOption == 2) {
+						// View all schools
+						C206_CaseStudy.viewAllSchool(SchoolList);
 
-				} else if (adOption == 2) { //userManagement
+					} else if (schOption == 3) {
+						// Delete a school
+						String nameOfSchooltoDelete = Helper.readString("Enter School Name to delete: ");
+						C206_CaseStudy.deleteSchoolByName(SchoolList, nameOfSchooltoDelete);
+						System.out.println("School deleted");
+					}
+				}
+
+				else if (adOption == 2) { // userManagement
 					C206_CaseStudy.userManagementMenu();
 					int userOption = Helper.readInt("Choose 1 option: ");
+					while (userOption < 1 || userOption > 3) {
+						System.out.println("Invalid Option! Please try again.");
+						userOption = Helper.readInt("Choose 1 Option: ");
+					}
 					if (userOption == 1) {
 						// Add user
-						
+
 					} else if (userOption == 2) {
 						// View all user
-						
-					} else if (userOption == 3){
+
+					} else if (userOption == 3) {
 						// Delete user
-						
-					} else {
-						System.out.println("Invalid Option!");
+
 					}
-						
-				} else if (adOption == 3){ // vendorManagement
+
+				} else if (adOption == 3) { // vendorManagement
 					C206_CaseStudy.vendorManagementMenu();
 					int vendorOption = Helper.readInt("Choose 1 option: ");
+					while (vendorOption < 1 || vendorOption > 3) {
+						System.out.println("Invalid Option! Please try again.");
+						vendorOption = Helper.readInt("Choose 1 Option: ");
+					}
 					if (vendorOption == 1) {
 						// Add vendor
 						String vendorName = Helper.readString("Enter Vendor Name: ");
 						String vendorDescription = Helper.readString("Enter Description Of Vendor (optional): ");
 						String vendorContactNumber = Helper.readString("Enter Vendor's Contact Number: ");
 						Vendor vendorToBeAdded = new Vendor(vendorName, vendorDescription, vendorContactNumber);
-						
+
 						C206_CaseStudy.addVendor(VendorList, vendorToBeAdded);
 						System.out.println("Vendor successfully added");
-						
-					} else if (vendorOption == 2) { 
+
+					} else if (vendorOption == 2) {
 						// View all vendors
 						C206_CaseStudy.viewAllVendor(VendorList);
-						
-					} else if (vendorOption == 3){
+
+					} else if (vendorOption == 3) {
 						// Delete a vendor
 						String vendorName = Helper.readString("Enter Vendor Name To Delete: ");
 						C206_CaseStudy.deleteVendorByName(VendorList, vendorName);
 						System.out.println("Vendor successfully deleted");
-						
-					} else {
-						System.out.println("Invalid Option!");
 					}
-				} else {
-					System.out.println("Invalid Option!");
+				}
+			}
 
-					School ToBeAdded = inputSchool();
-					C206_CaseStudy.addSchool(SchoolList, ToBeAdded);
-					System.out.println("School added");
-				}
-					
-				}
-				
-			} else if (option == 2) { // user 
+			if (option == 2) { // user
 				C206_CaseStudy.userMenu();
 				int userOption = Helper.readInt("Choose 1 option: ");
-				
+				while (userOption < 1 || userOption > 4) {
+					System.out.println("Invalid Option! Please try again.");
+					userOption = Helper.readInt("Choose 1 Option: ");
+				}
+
 				if (userOption == 1) {
-					// codes to create new user 
-					
+					// codes to create new user
+
 				} else if (userOption == 2) { // orderManagement
 					C206_CaseStudy.orderManagementMenu();
 					int userOption1 = Helper.readInt("Choose 1 option: ");
+					while (userOption < 1 || userOption > 4) {
+						System.out.println("Invalid Option! Please try again.");
+						userOption = Helper.readInt("Choose 1 Option: ");
+					}
 					if (userOption1 == 1) {
 						// Add order
-						
+
 					} else if (userOption1 == 2) {
 						// View all order
-						
-					} else if (userOption1 == 3){
+
+					} else if (userOption1 == 3) {
 						// Delete order
-						
-					} else {
-						System.out.println("Invalid Option!");
-					}
-				
-				} else if (userOption == 3) { 
+
+					} 
+
+				} else if (userOption == 3) {
 					// View all vendors
 					C206_CaseStudy.viewAllVendor(VendorList);
-				
-				} else if (userOption == 4){
+
+				} else if (userOption == 4) {
 					C206_CaseStudy.paymentManagementMenu();
 					int userOption2 = Helper.readInt("Choose 1 option: ");
 					if (userOption2 == 1) {
 						// Add payment
-					
-					} else if (userOption2 == 2){
+
+					} else if (userOption2 == 2) {
 						// View payment
-						
-					} else {
-						System.out.println("Invalid Option!");
+
 					}
-					
-				} else {
-					System.out.println("Invalid Option!");
 				}
-				
-			} else if (option == 3) { // vendor 
+
+			} else if (option == 3) { // vendor
 				C206_CaseStudy.menusManagementMenu();
 				int vendorOption = Helper.readInt("Choose 1 option: ");
+				while (vendorOption < 1 || vendorOption > 3) {
+					System.out.println("Invalid Option! Please try again.");
+					vendorOption = Helper.readInt("Choose 1 Option: ");
+				}
 				if (vendorOption == 1) {
 					// Add menu
+					String code = Helper.readString("Enter menu code: ");
+					String name = Helper.readString("Enter menu name: ");
+
+					VendorMenu menuToBeAdded = new VendorMenu(code, name);
+					C206_CaseStudy.addVendorMenu(MenuList, menuToBeAdded);
+					System.out.println("Menu successfully added!");
 					
 				} else if (vendorOption == 2) {
 					// View menu
-				
-				} else if (vendorOption == 3){
+					C206_CaseStudy.viewAllVendorMenu(MenuList);
+				} else if (vendorOption == 3) {
 					// Delete menu
-					
-				} else {
-					System.out.println("Invalid Option!");
-				}
-			
-			} else if (option == 4) { // payment gateway
-				System.out.println("Delete payment");
-				// codes for delete payment
-			
-			} else if (option == 5) {
-				System.out.println("Thank you for using School Lunch Box Online Ordering System!");
-				
-			} else {
-				System.out.println("Invalid option!");
+					String name = Helper.readString("Enter menu name to delete: ");
+					C206_CaseStudy.deleteVendorMenuByName(MenuList, name);
+					System.out.println("Menu successfully deleted!");
+
+				} else if (option == 4) { // payment gateway
+
+					System.out.println("Delete payment");
+					// codes for delete payment
+
+				} 
 			}
-				}
-			}
+		}System.out.println("Thank you for using School Lunch Box Online Ordering System!");
 	}
-			
+
+	
+	
+	
+
+	
 	// main menu / login page
 	public static void mainMenu() {
 		C206_CaseStudy.setHeader("School Lunch Box Online Ordering System Login Page");
@@ -282,7 +289,6 @@ public class C206_CaseStudy {
 
 		School Sch = new School(SchoolName, SchoolAddress, ContactNumber);
 		return Sch;
-
 	}
 
 	public static void addSchool(ArrayList<School> schoolList, School newSchool) {
@@ -317,7 +323,7 @@ public class C206_CaseStudy {
 	}
 
 	public static void viewAllSchool(ArrayList<School> SchoolList) {
-		C206_CaseStudy.setHeader("SCHOOL LIST");
+		C206_CaseStudyDraft2.setHeader("SCHOOL LIST");
 		String output = String.format("%-30s %-30s %-10s\n", "SCHOOL-NAME", "SCHOOL-ADDRESS", "SCHOOL-CONTACT-NUMBER");
 		output += retrieveAllSchool(SchoolList);
 		System.out.println(output);
@@ -386,6 +392,66 @@ public class C206_CaseStudy {
 
 	// ================================= For menu management
 	// =================================
+	public static void addVendorMenu(ArrayList<VendorMenu> menuList, VendorMenu menuToBeAdded) {
+		// TODO Auto-generated method stub
+		String newMenuName = menuToBeAdded.getMenuName();
+		
+		for(VendorMenu existingMenu : menuList) {
+			if (existingMenu.getMenuName().equalsIgnoreCase(newMenuName)) {
+			return;
+			}
+			
+			Boolean isVendorMenuNameEmpty = menuToBeAdded.getMenuName().isEmpty();
+			Boolean isMenuCodeEmpty = menuToBeAdded.getMenuCode().isEmpty();
+			if (isVendorMenuNameEmpty || isMenuCodeEmpty) {
+				System.out.println("Please fill in all neccessary fields!");
+				return;
+			}
+		}
+		// If no duplicate is found, add the new vendor to the list
+				menuList.add(menuToBeAdded);
+				}
+	
+	public static String retrieveAllVendorMenu(ArrayList<VendorMenu> menuList) {
+		String output = "";
+
+		for (int i = 0; i < menuList.size(); i++) {
+
+			output += menuList.get(i).toString();
+
+		}
+		return output;
+	}
+	
+	public static void viewAllVendorMenu(ArrayList<VendorMenu> menuList) {
+		// TODO Auto-generated method stub
+		C206_CaseStudy.setHeader("MENU LIST");
+		String output = String.format("%-30s %-10s\n", "MENU CODE", "MENU NAME");
+		output += retrieveAllVendorMenu(menuList);
+		System.out.println(output);
+		
+	}
+	
+	public static void deleteVendorMenuByName(ArrayList<VendorMenu> menuList, String menuName) {
+		// TODO Auto-generated method stub
+			for (int i = 0; i < menuList.size(); i++) {
+				VendorMenu vendormenu = menuList.get(i);
+				
+				//Check if deleted menu is still in the system
+				Boolean VendorMenuInSystem = vendormenu.getMenuName().equalsIgnoreCase(menuName);
+		
+				if (VendorMenuInSystem) {
+					menuList.remove(i);
+					return;
+				}
+			}
+		}
+	
+	
+	
+	
+	
+	
 	
 	// ================================= For order management
 	// =================================
@@ -448,4 +514,6 @@ public class C206_CaseStudy {
 			}
 		}
 	}
+
+
 
