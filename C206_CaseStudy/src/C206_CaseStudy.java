@@ -6,7 +6,7 @@ public class C206_CaseStudy {
 
 		ArrayList<School> SchoolList = new ArrayList<School>();
 
-		SchoolList.add(new School("CC001", "Sony HDR-CX405", "123"));
+		SchoolList.add(new School("Bright Academy", "Sengkang St 21", "94567890"));
 
 		//Vendor ArrayList
 		ArrayList<Vendor> VendorList = new ArrayList<Vendor>();
@@ -354,7 +354,7 @@ public class C206_CaseStudy {
 	}
 
 	public static void viewAllSchool(ArrayList<School> SchoolList) {
-		C206_CaseStudyDraft2.setHeader("SCHOOL LIST");
+		C206_CaseStudy.setHeader("SCHOOL LIST");
 		String output = String.format("%-30s %-30s %-10s\n", "SCHOOL-NAME", "SCHOOL-ADDRESS", "SCHOOL-CONTACT-NUMBER");
 		output += retrieveAllSchool(SchoolList);
 		System.out.println(output);
