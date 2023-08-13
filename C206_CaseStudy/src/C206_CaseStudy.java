@@ -347,7 +347,7 @@ public class C206_CaseStudy {
 
 		for (int i = 0; i < SchoolList.size(); i++) {
 
-			output += SchoolList.get(i).toString();
+			output += SchoolList.get(i).toStringSchool();
 
 		}
 		return output;
@@ -468,7 +468,7 @@ public class C206_CaseStudy {
 
 				for (int i = 0; i < menuList.size(); i++) {
 
-					output += menuList.get(i).toString();
+					output += menuList.get(i).toStringVendorMenu();
 
 				}
 				return output;

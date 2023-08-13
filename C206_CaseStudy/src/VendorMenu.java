@@ -19,7 +19,7 @@ public class VendorMenu {
 		this.menuName = menuName;
 		}
 	
-	public String toString() {
+	public String toStringVendorMenu() {
 		String itemInfo =  String.format("%-30s %-10s\n", menuCode, menuName);
 		return itemInfo;
 		}
