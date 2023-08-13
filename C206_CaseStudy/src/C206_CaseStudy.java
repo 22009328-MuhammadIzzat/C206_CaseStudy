@@ -538,7 +538,7 @@ public class C206_CaseStudy {
 
 				for (int i = 0; i < VendorList.size(); i++) {
 
-					output += VendorList.get(i).toString();
+					output += VendorList.get(i).toStringVendor();
 
 				}
 				return output;
