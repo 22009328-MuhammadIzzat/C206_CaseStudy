@@ -20,8 +20,8 @@ public class C206_CaseStudy {
 		UserList.add(new Users("Jane Tan","S12345A","9123456","T12345A"));
 
 		//Menu ArrayList
-		ArrayList<VendorMenu> MenuList = new ArrayList<VendorMenu>();
-		MenuList.add(new VendorMenu("A1", "Breakfast menu"));
+		ArrayList<VendorMenu> menuList = new ArrayList<VendorMenu>();
+		menuList.add(new VendorMenu("A1", "Breakfast menu"));
 
 		int option = 0;
 
@@ -84,7 +84,7 @@ public class C206_CaseStudy {
 					} else if (userOption == 3) {
 
 						String name = Helper.readString("Enter user Name to delete: ");
-						C206_CaseStudydraft.deleteUserByNric(UserList, name);
+						C206_CaseStudy.deleteUserByNric(UserList, name);
 						System.out.println("User deleted");
 
 					} else {
@@ -190,16 +190,16 @@ public class C206_CaseStudy {
 					String name = Helper.readString("Enter menu name: ");
 
 					VendorMenu menuToBeAdded = new VendorMenu(code, name);
-					C206_CaseStudy.addVendorMenu(MenuList, menuToBeAdded);
+					C206_CaseStudy.addVendorMenu(menuList, menuToBeAdded);
 					System.out.println("Menu successfully added!");
 
 				} else if (vendorOption == 2) {
 					// View menu
-					C206_CaseStudy.viewAllVendorMenu(MenuList);
+					C206_CaseStudy.viewAllVendorMenu(menuList);
 				} else if (vendorOption == 3) {
 					// Delete menu
 					String name = Helper.readString("Enter menu name to delete: ");
-					C206_CaseStudy.deleteVendorMenuByName(MenuList, name);
+					C206_CaseStudy.deleteVendorMenuByName(menuList, name);
 					System.out.println("Menu successfully deleted!");
 
 				} else if (option == 4) { // payment gateway
