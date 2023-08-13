@@ -9,7 +9,7 @@ public class C206_CaseStudydraft {
 		
 		//Vendor ArrayList
 		ArrayList<Vendor> VendorList = new ArrayList<Vendor>();
-		VendorList.add(new Vendor("ABCVendor", "Western cuisine", "456"));
+		VendorList.add(new Vendor("ABCVendor", "Western cuisine", "456", "Serangoon Road 123"));
 
 		int option = 0;
 
@@ -73,7 +73,8 @@ public class C206_CaseStudydraft {
 						String vendorName = Helper.readString("Enter Vendor Name: ");
 						String vendorDescription = Helper.readString("Enter Description Of Vendor (optional): ");
 						String vendorContactNumber = Helper.readString("Enter Vendor's Contact Number: ");
-						Vendor vendorToBeAdded = new Vendor(vendorName, vendorDescription, vendorContactNumber);
+						String vendorAddress = Helper.readString("Enter Vendor's Address: ");
+						Vendor vendorToBeAdded = new Vendor(vendorName, vendorDescription, vendorContactNumber, vendorAddress);
 						
 						C206_CaseStudydraft.addVendor(VendorList, vendorToBeAdded);
 						System.out.println("Vendor successfully added");
@@ -392,7 +393,8 @@ public class C206_CaseStudydraft {
 			}
 			Boolean isVendorNameEmpty = newVendor.getVendorName().isEmpty();
 			Boolean isVendorContactNumberEmpty = newVendor.getContactNumber().isEmpty();
-			if (isVendorNameEmpty || isVendorContactNumberEmpty) {
+			Boolean isVendorAddressEmpty = newVendor.getAddress().isEmpty();
+			if (isVendorNameEmpty || isVendorContactNumberEmpty || isVendorAddressEmpty) {
 				System.out.println("Please fill in all neccessary fields!");
 				return;
 			}
@@ -408,7 +410,8 @@ public class C206_CaseStudydraft {
 
 			for (int i = 0; i < VendorList.size(); i++) {
 
-				output += VendorList.get(i).toString();
+				output += String.format("%-20s %-25s %-27s %-10s\n", VendorList.get(i).getVendorName(), VendorList.get(i).getDescription(),
+						VendorList.get(i).getContactNumber(), VendorList.get(i).getAddress());
 
 			}
 			return output;
@@ -416,7 +419,7 @@ public class C206_CaseStudydraft {
 
 		public static void viewAllVendor(ArrayList<Vendor> VendorList) {
 			C206_CaseStudydraft.setHeader("VENDORS LIST");
-			String output = String.format("%-30s %-30s %-10s\n", "VENDOR-NAME", "VENDOR-DESCRIPTION", "VENDOR-CONTACT-NUMBER");
+			String output = String.format("%-20s %-25s %-27s %-10s\n", "VENDOR NAME", "VENDOR DESCRIPTION", "VENDOR CONTACT NUMBER", "VENDOR ADDRESS");
 			output += retrieveAllVendor(VendorList);
 			System.out.println(output);
 		}

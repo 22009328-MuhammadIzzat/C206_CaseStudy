@@ -10,12 +10,12 @@ public class C206_CaseStudy {
 
 		//Vendor ArrayList
 		ArrayList<Vendor> VendorList = new ArrayList<Vendor>();
-		VendorList.add(new Vendor("ABCVendor", "Western cuisine", "456"));
+		VendorList.add(new Vendor("ABCVendor", "Western cuisine", "81568179", "Serangoon Road 123"));
 
 		SchoolList.add(new School("Granite Bay School", "Tampines St 78", "87654321"));
 
 
-		//User Arraylist 
+		//User Arraylist
 		ArrayList<Users> UserList = new ArrayList<Users>();
 		UserList.add(new Users("Jane Tan","S12345A","9123456","T12345A"));
 
@@ -104,7 +104,8 @@ public class C206_CaseStudy {
 						String vendorName = Helper.readString("Enter Vendor Name: ");
 						String vendorDescription = Helper.readString("Enter Description Of Vendor (optional): ");
 						String vendorContactNumber = Helper.readString("Enter Vendor's Contact Number: ");
-						Vendor vendorToBeAdded = new Vendor(vendorName, vendorDescription, vendorContactNumber);
+						String vendorAddress = Helper.readString("Enter Vendor's Address: ");
+						Vendor vendorToBeAdded = new Vendor(vendorName, vendorDescription, vendorContactNumber, vendorAddress);
 
 						C206_CaseStudy.addVendor(VendorList, vendorToBeAdded);
 						System.out.println("Vendor successfully added");
@@ -522,49 +523,49 @@ public class C206_CaseStudy {
 					}
 					Boolean isVendorNameEmpty = newVendor.getVendorName().isEmpty();
 					Boolean isVendorContactNumberEmpty = newVendor.getContactNumber().isEmpty();
-					if (isVendorNameEmpty || isVendorContactNumberEmpty) {
+					Boolean isVendorAddressEmpty = newVendor.getAddress().isEmpty();
+					if (isVendorNameEmpty || isVendorContactNumberEmpty || isVendorAddressEmpty) {
 						System.out.println("Please fill in all neccessary fields!");
 						return;
 					}
 				}
-
+				
 				// If no duplicate is found, add the new vendor to the list
 				VendorList.add(newVendor);
 
-			}
-
-			public static String retrieveAllVendor(ArrayList<Vendor> VendorList) {
-				String output = "";
-
-				for (int i = 0; i < VendorList.size(); i++) {
-
-					output += VendorList.get(i).toStringVendor();
-
 				}
-				return output;
-			}
 
-			public static void viewAllVendor(ArrayList<Vendor> VendorList) {
-				C206_CaseStudy.setHeader("VENDORS LIST");
-				String output = String.format("%-30s %-30s %-10s\n", "VENDOR-NAME", "VENDOR-DESCRIPTION", "VENDOR-CONTACT-NUMBER");
-				output += retrieveAllVendor(VendorList);
-				System.out.println(output);
-			}
+				public static String retrieveAllVendor(ArrayList<Vendor> VendorList) {
+					String output = "";
 
-			public static void deleteVendorByName(ArrayList<Vendor> VendorList, String VendorName) {
-				for (int i = 0; i < VendorList.size(); i++) {
-					Vendor vendor = VendorList.get(i);
+					for (int i = 0; i < VendorList.size(); i++) {
 
-					//Check if deleted vendor is still in the system
-					Boolean VendorNameInSystem = vendor.getVendorName().equalsIgnoreCase(VendorName);
+						output += String.format("%-20s %-25s %-27s %-10s\n", VendorList.get(i).getVendorName(), VendorList.get(i).getDescription(),
+								VendorList.get(i).getContactNumber(), VendorList.get(i).getAddress());
 
-					if (VendorNameInSystem) {
-						VendorList.remove(i);
-						return;
+					}
+					return output;
+				}
+
+				public static void viewAllVendor(ArrayList<Vendor> VendorList) {
+					C206_CaseStudydraft.setHeader("VENDORS LIST");
+					String output = String.format("%-20s %-25s %-27s %-10s\n", "VENDOR NAME", "VENDOR DESCRIPTION", "VENDOR CONTACT NUMBER", "VENDOR ADDRESS");
+					output += retrieveAllVendor(VendorList);
+					System.out.println(output);
+				}
+
+				public static void deleteVendorByName(ArrayList<Vendor> VendorList, String VendorName) {
+					for (int i = 0; i < VendorList.size(); i++) {
+						Vendor vendor = VendorList.get(i);
+						
+						//Check if deleted vendor is still in the system
+						Boolean VendorNameInSystem = vendor.getVendorName().equalsIgnoreCase(VendorName);
+				
+						if (VendorNameInSystem) {
+							VendorList.remove(i);
+							return;
+						}
 					}
 				}
 			}
-		}
-
-
 
