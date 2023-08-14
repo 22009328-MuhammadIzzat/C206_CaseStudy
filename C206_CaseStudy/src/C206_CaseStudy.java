@@ -13,6 +13,9 @@ public class C206_CaseStudy {
 	private static final int VIEW_ALL_ORDER = 2;
 	private static final int ADD_ORDER = 1;
 	private static final int ADD_VENDOR = 0;
+	private static final int ADD_PAYMENT = 1;
+	private static final int VIEW_ALL_PAYMENT = 2;
+	private static final int DEL_PAYMENT = 4;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -61,8 +64,6 @@ public class C206_CaseStudy {
 				paymentList.add(new Payment("Debit Card", "314", "01/25", "87651234"));
 
 		UserList.add(new Users("Jane Tan", "S12345A", "9123456", "T12345A"));
-
-	
 
 	
 
@@ -228,18 +229,13 @@ public class C206_CaseStudy {
 				} else if (userOption == 4) {
 					C206_CaseStudy.paymentManagementMenu();
 					int userOption2 = Helper.readInt("Choose 1 option: ");
-					if (userOption2 == 1) {
+					if (userOption2 == ADD_PAYMENT) {
 						// Add payment
-						String paymentName = Helper.readString("Enter Payment Type: ");
-						String paymentCvv = Helper.readString("Enter Cvv of your card: ");
-						String paymentExpDate = Helper.readString("Enter your card's expiry date (e.g. 09/26): ");
-						String paymentNum = Helper.readString("Enter your card's number: ");
-						Payment paymentAdded = new Payment(paymentName, paymentCvv, paymentExpDate, paymentNum);
-
-						C206_CaseStudy.addPayment(paymentList, paymentAdded);
+						Payment newPay = inputPayment();
+						C206_CaseStudy.addPayment(paymentList, newPay);
 						System.out.println("Payment is successful!");
 
-					} else if (userOption2 == 2) {
+					} else if (userOption2 == VIEW_ALL_PAYMENT) {
 						// View payment
 						C206_CaseStudy.viewAllPayment(paymentList);
 
@@ -276,7 +272,7 @@ public class C206_CaseStudy {
 				}
 				
 				
-			} else if (option == 4) { // payment gateway
+			} else if (option == DEL_PAYMENT) { // payment gateway
 
 				System.out.println("Delete payment");
 				// codes to delete payment
@@ -284,7 +280,7 @@ public class C206_CaseStudy {
 				C206_CaseStudy.deletePaymentByAccNum(paymentList, paymentAcc);
 				System.out.println("Payment successfully deleted!");
 
-			}
+			} 
 		}
 		System.out.println("Thank you for using School Lunch Box Online Ordering System!");
 	}
@@ -600,7 +596,7 @@ public class C206_CaseStudy {
 		    }
 
 			// ================================= For payment management
-		    public static Payment inputPayemnt() {
+		    public static Payment inputPayment() {
 				String paymentType = Helper.readString("Enter Payment Type > ");
 				String paymentCvv = Helper.readString("Enter Card Cvv > ");
 				String paymentExpDate = Helper.readString("Enter Card Expiry Date > ");
@@ -617,7 +613,7 @@ public class C206_CaseStudy {
 				for (Payment existingPayment : paymentList) {
 					if (existingPayment.getPaymentNum().equalsIgnoreCase(newPaymentAcc)) {
 						System.out.println(
-								"This payment: " + newPaymentAcc + " already exists. Duplicate payment names are not allowed.");
+								"This payment: " + newPaymentAcc + " already exists. Duplicate payment are not allowed.");
 						return;
 					}
 					Boolean isPaymentTypeEmpty = newPayment.getPaymentType().isEmpty();
@@ -645,8 +641,8 @@ public class C206_CaseStudy {
 
 				}
 				return output;
-			
 			}
+
 			public static void viewAllPayment(ArrayList<Payment> paymentList) {
 				C206_CaseStudy.setHeader("Payment List");
 				String output = String.format("%-20s\n", "==PAYMENT TYPE==");
@@ -660,9 +656,9 @@ public class C206_CaseStudy {
 					Payment pay = paymentList.get(i);
 
 					// Check if the deleted payment is still in the system
-					Boolean paymentNameInSystem = pay.getPaymentType().equalsIgnoreCase(paymentAccNum);
+					Boolean paymentNumInSystem = pay.getPaymentNum().equalsIgnoreCase(paymentAccNum);
 
-					if (paymentNameInSystem) {
+					if (paymentNumInSystem) {
 						paymentList.remove(i);
 						return;
 					}

@@ -41,5 +41,4 @@ public class Payment {
 	public String getPaymentNum() {
 		return paymentNum;
 	}
-
 }
