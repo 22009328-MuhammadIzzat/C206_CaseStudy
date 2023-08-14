@@ -24,8 +24,14 @@ public class C206_CaseStudy {
 		UserList.add(new Users("Jane Tan","S12345A","9123456","T12345A"));
 
 		//Menu ArrayList
+
+		ArrayList<VendorMenu> MenuList = new ArrayList<VendorMenu>();
+		MenuList.add(new VendorMenu("A1", "Breakfast menu"));
+
 		ArrayList<VendorMenu> menuList = new ArrayList<VendorMenu>();
 		menuList.add(new VendorMenu("A1", "Breakfast menu"));
+<<<<<<< HEAD
+=======
 		
 		//Menu Items
 		ArrayList<String> menuItems = new ArrayList<>();
@@ -41,6 +47,7 @@ public class C206_CaseStudy {
 				ArrayList<Payment> paymentList = new ArrayList<Payment>();
 				paymentList.add(new Payment("Debit Card", "314", "01/25", "87651234"));
 
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 		int option = 0;
 
 		while (option != 5) {
@@ -102,7 +109,11 @@ public class C206_CaseStudy {
 					} else if (userOption == 3) {
 
 						String name = Helper.readString("Enter user Name to delete: ");
+
+						C206_CaseStudydraft.deleteUserByNric(UserList, name);
+
 						C206_CaseStudy.deleteUserByNric(UserList, name);
+
 						System.out.println("User deleted");
 
 					} else {
