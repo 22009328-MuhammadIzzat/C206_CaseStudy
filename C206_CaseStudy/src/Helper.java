@@ -242,4 +242,9 @@ public class Helper {
     return getDay(one) == getDay(two) && getMonth(one) == getMonth(two)
         && getYear(one) == getYear(two);
   }
+
+public static void setHeader(String string) {
+	// TODO Auto-generated method stub
+	
+}
 }

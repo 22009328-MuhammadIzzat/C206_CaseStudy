@@ -22,6 +22,16 @@ public class C206_CaseStudy {
 		//Menu ArrayList
 		ArrayList<VendorMenu> menuList = new ArrayList<VendorMenu>();
 		menuList.add(new VendorMenu("A1", "Breakfast menu"));
+		
+		//Menu Items
+		ArrayList<String> menuItems = new ArrayList<>();
+        menuItems.add("Burger");
+        menuItems.add("Fries");
+        menuItems.add("Soda");
+		
+		//Order ArrayList
+		ArrayList<Order> orderList = new ArrayList<Order>();
+		orderList.add(new Order("10", "12/05/2025", menuItems));
 
 		int option = 0;
 
@@ -153,12 +163,19 @@ public class C206_CaseStudy {
 					}
 					if (userOption1 == 1) {
 						// Add order
+						Order newOrder = inputOrder();
+					    C206_CaseStudy.addOrder(orderList, newOrder);
+					    System.out.println("Order added");
 
 					} else if (userOption1 == 2) {
 						// View all order
+						C206_CaseStudy.viewAllOrders(orderList);
 
 					} else if (userOption1 == 3) {
 						// Delete order
+					    String orderIdToDelete = Helper.readString("Enter order id to delete order: ");
+					    C206_CaseStudy.deleteOrderByorderId(orderList, orderIdToDelete);
+					    System.out.println("Order has been Successfully deleted");
 
 					} 
 
@@ -507,6 +524,79 @@ public class C206_CaseStudy {
 
 			// ================================= For order management
 			// =================================
+			public static Order inputOrder() {
+				String orderId = Helper.readString("Enter an id for the order > ");
+		        String Date = Helper.readString("Enter Date of order in (dd/mm/yyyy) format > ");
+		        ArrayList<String> menuItems = new ArrayList<String>();
+		        
+		        String menuItem;
+		        do {
+		            menuItem = Helper.readString("Enter Menu Item (or type 'done' to finish) > ");
+		            if (!menuItem.equalsIgnoreCase("done")) {
+		                menuItems.add(menuItem);
+		            }
+		        } while (!menuItem.equalsIgnoreCase("done"));
+		        
+		        
+		        Order ord = new Order(orderId, Date, menuItems);
+		        
+				return ord;
+		    
+			}
+
+		    public static void addOrder(ArrayList<Order> orderList, Order newOrder) {
+		        String neworderId = newOrder.getorderId();
+		        
+		        
+		        for (Order existingOrder : orderList) {
+		        	if (existingOrder.getorderId().equals(neworderId)) {
+		        		return;
+		        		
+		        	}
+		        	Boolean isOrderIdEmpty = newOrder.getorderId().isEmpty();
+					Boolean isDateEmpty = newOrder.getDate().isEmpty();
+					Boolean isMenuEmpty = newOrder.getMenuItems().isEmpty();
+					if (isOrderIdEmpty || isDateEmpty || isMenuEmpty) {
+						return;
+					}
+		        	
+		        	
+		        }
+		        
+		        orderList.add(newOrder);
+
+		    }
+
+		    public static String retrieveAllOrders(ArrayList<Order> orderList) {
+		        String output = "";
+
+		        for (int i = 0; i < orderList.size(); i++) {
+		            output += orderList.get(i).toStringOrder();
+		        }
+		        return output;
+		    }
+
+		    public static void viewAllOrders(ArrayList<Order> orderList) {
+		        Helper.line(100, "=");
+		        System.out.println("ORDER-LIST");
+		        String output = String.format("%-30s %-30s %-30s\n", "ORDER-ID", "DATE-OF-ORDER", "MENU-ITEMS");
+		        Helper.line(100, "=");
+		        output += retrieveAllOrders(orderList);
+		        System.out.println(output);
+		        Helper.line(100, "=");
+		    }
+
+		    public static void deleteOrderByorderId(ArrayList<Order> orderList, String orderId) {
+		        for (int i = 0; i < orderList.size(); i++) {
+		            Order order = orderList.get(i);
+		            Boolean parentNameInSystem = order.getorderId().equalsIgnoreCase(orderId);
+
+		            if (parentNameInSystem) {
+		                orderList.remove(i);
+		                return;
+		            }
+		        }
+		    }
 
 			// ================================= For payment management
 			// =================================

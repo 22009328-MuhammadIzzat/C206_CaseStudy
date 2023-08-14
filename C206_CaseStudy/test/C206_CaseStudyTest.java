@@ -22,10 +22,17 @@ public class C206_CaseStudyTest {
 	private Vendor Vendor1;
 	private Vendor Vendor2;
 	private Vendor Vendor3;
+	
+	private Order order1;
+	private Order order2;
+	private Order order3;
 
 	private ArrayList<School> SchoolList;
 	private ArrayList<VendorMenu> menuList;
 	private ArrayList<Vendor> VendorList;
+	private ArrayList<Order> orderList;
+    public ArrayList<String> menuItems = new ArrayList<>();
+	
 
 	public C206_CaseStudyTest() {
 		super();
@@ -50,6 +57,18 @@ public class C206_CaseStudyTest {
 		Vendor3 = new Vendor("A1Vendor", "Japan cuisine", "87945087", "Jurong West St 15");
 		
 		VendorList = new ArrayList<Vendor>();
+		
+		menuItems.add("Burger");
+        menuItems.add("Fries");
+        menuItems.add("Soda");
+        
+        order1 = new Order("1", "12/08/2023", menuItems);
+        order2 = new Order("2", "13/08/2023", menuItems);
+        order3 = new Order("3", "14/08/2023", menuItems);
+
+        orderList = new ArrayList<Order>();
+		
+		
 	}
 
 	@Test
@@ -149,6 +168,34 @@ public class C206_CaseStudyTest {
 				C206_CaseStudy.addVendor(VendorList, vendor_missing);
 				assertEquals("Test that the Vendor arraylist size is unchanged.", 2, VendorList.size());
 	}
+	
+	@Test
+    public void testAddOrder() {
+    	// Test Case 1: Normal Condition
+    	// Order list is not null and it is empty
+        assertNotNull("Test if there is a valid order list to add to", orderList);
+        assertEquals("Test that the order list is empty.", 0, orderList.size());
+
+        // Given an empty list, after adding 1 item, the size of the list is 1.
+        C206_CaseStudy.addOrder(orderList, order1);
+        assertEquals("Test that the order list size is 1.", 1, orderList.size());
+
+        // Test Case 2: Boundary Condition
+        // Add another school
+        C206_CaseStudy.addOrder(orderList, order2);
+        assertEquals("Test that the order list size is now 2.", 2, orderList.size());
+
+        // Add an order with the same ID, should not change the list size
+        C206_CaseStudy.addOrder(orderList, order2);
+        assertEquals("Test that the order list size is unchanged.", 2, orderList.size());
+        
+        // Test Case 3: Error Condition
+        // Add a Order with missing details
+        Order order1_missing = new Order("","12/08/2023",menuItems);
+        C206_CaseStudy.addOrder(orderList, order1_missing);
+        assertEquals("Test that the Order arraylist size is unchanged.", 2, orderList.size());
+        
+    }
 
 
 	@Test
@@ -276,6 +323,43 @@ public class C206_CaseStudyTest {
 				assertEquals("Test that the display is correct.", testOutput, allVendor);
 	}
 	
+	 @Test
+	    public void testRetrieveAllOrders() {
+	    	// Test Case 1
+	    	// Test if Order list is not null and empty
+	        assertNotNull("Test if there is a valid order list to add to", orderList);
+	        assertEquals("Test that the order list is empty.", 0, orderList.size());
+	        // Attempt to retrieve the Orders
+	        String allOrders = C206_CaseStudy.retrieveAllOrders(orderList);
+			String testOutput = "";
+	        // Test if the output if empty
+			assertEquals("Test that nothing is displayed", testOutput, allOrders);
+			// Test Case 2:
+	        C206_CaseStudy.addOrder(orderList, order1);
+	        C206_CaseStudy.addOrder(orderList, order2);
+	        // Test that the list is not empty
+	        assertEquals("Test that order list size is 2.", 2, orderList.size());
+	        
+	        // Attempt to retrieve the Orders
+	        allOrders = C206_CaseStudy.retrieveAllOrders(orderList);
+	        testOutput = String.format("%-30s %-30s %-10s\n", "1", "12/08/2023",menuItems);
+	        testOutput += String.format("%-30s %-30s %-10s\n", "2", "13/08/2023",menuItems);
+	        // Test that the details are displayed correctly
+	        assertEquals("Test that the display is correct.", testOutput, allOrders);
+	        
+	        // Test Case 3
+	        Order order3 = new Order("10002130123", "", menuItems);
+	        C206_CaseStudy.addOrder(orderList, order3);
+	        // Attempt to retrieve the Orders
+	        allOrders = C206_CaseStudy.retrieveAllOrders(orderList);
+	        testOutput = String.format("%-30s %-30s %-10s\n", "1", "12/08/2023", menuItems);
+	        testOutput += String.format("%-30s %-30s %-10s\n", "2", "13/08/2023", menuItems);
+	        // Test that the details are displayed correctly
+	        assertEquals("Test that the display is correct.", testOutput, allOrders);
+	        
+	        
+	    }
+	
 	@Test
 	public void testDeleteSchool() {
 		// School list is not null and it is empty
@@ -392,6 +476,39 @@ public class C206_CaseStudyTest {
 			// Check that the VendorList remains unchanged (no vendors are deleted)
 				assertEquals("Test that the VendorList size is the same after attempting to delete a non-existent vendor.", 0, VendorList.size());	
 	}
+	
+	 @Test
+	    public void testDeleteOrder() {
+	    	// Order list is not null and it is empty
+	        assertNotNull("Test if there is a valid order list to add to", orderList);
+	        assertEquals("Test that the order list is empty.", 0, orderList.size());
+	        // Test Case 1: Normal Condition - Delete an existing order by order Id
+	        // Add some orders to the orderList
+	        C206_CaseStudy.addOrder(orderList, order1);
+	        C206_CaseStudy.addOrder(orderList, order2);
+
+	        // Delete Order 2 by order Id
+	        C206_CaseStudy.deleteOrderByorderId(orderList, "2");
+
+	        // Check the Order 2 is removed from the list
+	        assertEquals("Test that the order list size is 1 after deleting an order.", 1, orderList.size());
+	        assertFalse("Test that the deleted order is no longer in the list.", orderList.contains(order2));
+	        
+	        // Test Case 2: Boundary Condition - Delete the only Order in the list
+	        // Delete the first Order (order1) by order Id
+	        C206_CaseStudy.deleteOrderByorderId(orderList, "1");
+	        
+	        // Check that Order 1 is removed from the list
+	        assertEquals("Test that the orderList size is 0 after deleting Order 1. ", 0, orderList.size());
+	        assertFalse("Test that Order 1 is no longer in the OrderList.", orderList.contains(order1));
+	        
+	        // Test Case 3: Error Condition - Delete a order that does not exist in the list
+	        // Delete a order (order id - 20) that does not exist in the list
+	        C206_CaseStudy.deleteOrderByorderId(orderList, "20");
+	        
+	        // Check that the orderList remains unchanged 
+	        assertEquals("Test that the orderList size is the same after attempting to delete a non-existent order.",0,orderList.size());
+	    }
 
 	@Test
 	public void c206_test() {
