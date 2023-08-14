@@ -602,7 +602,7 @@ public class C206_CaseStudyTest {
 				C206_CaseStudy.deleteUserByNric(UsersList, "S12345B");
 
 			// Check that Users 2 is removed from the list
-				assertEquals("Test that the UsersList size is 1 after deleting VendorMenu 2.", 1, UsersList.size());
+				assertEquals("Test that the UsersList size is 1 after deleting user 2.", 1, UsersList.size());
 				assertFalse("Test that S12345B is no longer in the UsersList.", UsersList.contains(Users2));
 					
 				

@@ -1,13 +1,10 @@
 import java.util.ArrayList;
 
 public class C206_CaseStudy {
-	/**
-	 * 
-	 */
+	private static final int DELETE_MENU = 3;
+	private static final int VIEW_ALLMENU = 2;
+	private static final int ADD_MENU = 1;
 	private static final int DELETE_VENDOR = 3;
-	/**
-	 * 
-	 */
 	private static final int VIEW_VENDOR = 2;
 	private static final int DEL_USER = 3;
 	private static final int VIEW_USER = 2;
@@ -252,11 +249,11 @@ public class C206_CaseStudy {
 			} else if (option == 3) { // vendor
 				C206_CaseStudy.menusManagementMenu();
 				int vendorOption = Helper.readInt("Choose 1 option: ");
-				while (vendorOption < 1 || vendorOption > 3) {
+				while (vendorOption < ADD_MENU || vendorOption > DELETE_MENU) {
 					System.out.println("Invalid Option! Please try again.");
 					vendorOption = Helper.readInt("Choose 1 Option: ");
 				}
-				if (vendorOption == 1) {
+				if (vendorOption == ADD_MENU) {
 					// Add menu
 					String code = Helper.readString("Enter menu code: ");
 					String name = Helper.readString("Enter menu name: ");
@@ -265,16 +262,20 @@ public class C206_CaseStudy {
 					C206_CaseStudy.addVendorMenu(menuList, menuToBeAdded);
 					System.out.println("Menu successfully added!");
 
-				} else if (vendorOption == 2) {
+				} else if (vendorOption == VIEW_ALLMENU) {
 					// View menu
 					C206_CaseStudy.viewAllVendorMenu(menuList);
-				} else if (vendorOption == 3) {
+				} else if (vendorOption == DELETE_MENU) {
 					// Delete menu
 					String name = Helper.readString("Enter menu name to delete: ");
 					C206_CaseStudy.deleteVendorMenuByName(menuList, name);
 					System.out.println("Menu successfully deleted!");
 
+					
+					
 				}
+				
+				
 			} else if (option == 4) { // payment gateway
 
 				System.out.println("Delete payment");
@@ -405,8 +406,7 @@ public class C206_CaseStudy {
 
 
 
-	// ================================= For user management
-	// =================================
+	// ================================= For user management =================================
 
 	public static Users inputUsers() {
 		String UserName = Helper.readString("Enter User Name > ");
@@ -467,8 +467,7 @@ public class C206_CaseStudy {
 				}
 			}
 
-			// ================================= For menu management
-			// =================================
+			// ================================= For menu management =================================
 			public static void addVendorMenu(ArrayList<VendorMenu> menuList, VendorMenu menuToBeAdded) {
 				// TODO Auto-generated method stub
 				String newMenuName = menuToBeAdded.getMenuName();
@@ -481,7 +480,6 @@ public class C206_CaseStudy {
 					Boolean isVendorMenuNameEmpty = menuToBeAdded.getMenuName().isEmpty();
 					Boolean isMenuCodeEmpty = menuToBeAdded.getMenuCode().isEmpty();
 					if (isVendorMenuNameEmpty || isMenuCodeEmpty) {
-						System.out.println("Please fill in all neccessary fields!");
 						return;
 					}
 				}
@@ -525,13 +523,7 @@ public class C206_CaseStudy {
 			}
 
 
-
-
-
-
-
-			// ================================= For order management
-			// =================================
+			// ================================= For order management =================================
 			public static Order inputOrder() {
 				String orderId = Helper.readString("Enter an id for the order > ");
 		        String Date = Helper.readString("Enter Date of order in (dd/mm/yyyy) format > ");
@@ -676,7 +668,6 @@ public class C206_CaseStudy {
 					}
 				}
 			}
-			// =================================
 
 			// ================================= For vendor management
 			// =================================
