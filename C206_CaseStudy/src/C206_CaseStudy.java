@@ -577,6 +577,7 @@ public class C206_CaseStudy {
 		    }
 
 		    public static void viewAllOrders(ArrayList<Order> orderList) {
+		    	C206_CaseStudy.setHeader("ORDER LIST");
 		        Helper.line(100, "=");
 		        System.out.println("ORDER-LIST");
 		        String output = String.format("%-30s %-30s %-30s\n", "ORDER-ID", "DATE-OF-ORDER", "MENU-ITEMS");
