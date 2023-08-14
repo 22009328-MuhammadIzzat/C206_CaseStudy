@@ -30,8 +30,7 @@ public class C206_CaseStudy {
 
 		ArrayList<VendorMenu> menuList = new ArrayList<VendorMenu>();
 		menuList.add(new VendorMenu("A1", "Breakfast menu"));
-<<<<<<< HEAD
-=======
+
 		
 		//Menu Items
 		ArrayList<String> menuItems = new ArrayList<>();
@@ -47,7 +46,6 @@ public class C206_CaseStudy {
 				ArrayList<Payment> paymentList = new ArrayList<Payment>();
 				paymentList.add(new Payment("Debit Card", "314", "01/25", "87651234"));
 
->>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 		int option = 0;
 
 		while (option != 5) {
