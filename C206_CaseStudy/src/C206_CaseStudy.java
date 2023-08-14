@@ -241,7 +241,7 @@ public class C206_CaseStudy {
 			} else if (option == 4) { // payment gateway
 
 				System.out.println("Delete payment");
-				// codes for delete payment
+				// codes to delete payment
 				String paymentAcc = Helper.readString("Enter your card number: ");
 				C206_CaseStudy.deletePaymentByAccNum(paymentList, paymentAcc);
 				System.out.println("Payment successfully deleted!");
