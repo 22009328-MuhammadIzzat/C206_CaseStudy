@@ -1,12 +1,21 @@
 import java.util.ArrayList;
 
 public class C206_CaseStudy {
+	/**
+	 * 
+	 */
+	private static final int DELETE_VENDOR = 3;
+	/**
+	 * 
+	 */
+	private static final int VIEW_VENDOR = 2;
 	private static final int DEL_USER = 3;
 	private static final int VIEW_USER = 2;
 	private static final int ADD_USER = 1;
 	private static final int DEL_ORDER = 3;
 	private static final int VIEW_ALL_ORDER = 2;
 	private static final int ADD_ORDER = 1;
+	private static final int ADD_VENDOR = 0;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -153,31 +162,21 @@ public class C206_CaseStudy {
 				} else if (adOption == 3) { // vendorManagement
 					C206_CaseStudy.vendorManagementMenu();
 					int vendorOption = Helper.readInt("Choose 1 option: ");
-					while (vendorOption < 1 || vendorOption > 3) {
+					while (vendorOption < ADD_VENDOR || vendorOption > DELETE_VENDOR) {
 						System.out.println("Invalid Option! Please try again.");
 						vendorOption = Helper.readInt("Choose 1 Option: ");
 					}
-					if (vendorOption == 1) {
+					if (vendorOption == ADD_VENDOR) {
 						// Add vendor
-						String vendorName = Helper.readString("Enter Vendor Name: ");
-						String vendorDescription = Helper.readString("Enter Description Of Vendor (optional): ");
-						String vendorContactNumber = Helper.readString("Enter Vendor's Contact Number: ");
-						String vendorAddress = Helper.readString("Enter Vendor's Address: ");
-						Vendor vendorToBeAdded = new Vendor(vendorName, vendorDescription, vendorContactNumber,
-								vendorAddress);
+						add_vendor(VendorList);
 
-						C206_CaseStudy.addVendor(VendorList, vendorToBeAdded);
-						System.out.println("Vendor successfully added");
-
-					} else if (vendorOption == 2) {
+					} else if (vendorOption == VIEW_VENDOR) {
 						// View all vendors
 						C206_CaseStudy.viewAllVendor(VendorList);
 
-					} else if (vendorOption == 3) {
+					} else if (vendorOption == DELETE_VENDOR) {
 						// Delete a vendor
-						String vendorName = Helper.readString("Enter Vendor Name To Delete: ");
-						C206_CaseStudy.deleteVendorByName(VendorList, vendorName);
-						System.out.println("Vendor successfully deleted");
+						delete_vendor(VendorList);
 					}
 				}
 			}
@@ -287,6 +286,30 @@ public class C206_CaseStudy {
 			}
 		}
 		System.out.println("Thank you for using School Lunch Box Online Ordering System!");
+	}
+
+	/**
+	 * @param VendorList
+	 */
+	private static void delete_vendor(ArrayList<Vendor> VendorList) {
+		String vendorName = Helper.readString("Enter Vendor Name To Delete: ");
+		C206_CaseStudy.deleteVendorByName(VendorList, vendorName);
+		System.out.println("Vendor successfully deleted");
+	}
+
+	/**
+	 * @param VendorList
+	 */
+	private static void add_vendor(ArrayList<Vendor> VendorList) {
+		String vendorName = Helper.readString("Enter Vendor Name: ");
+		String vendorDescription = Helper.readString("Enter Description Of Vendor (optional): ");
+		String vendorContactNumber = Helper.readString("Enter Vendor's Contact Number: ");
+		String vendorAddress = Helper.readString("Enter Vendor's Address: ");
+		Vendor vendorToBeAdded = new Vendor(vendorName, vendorDescription, vendorContactNumber,
+				vendorAddress);
+
+		C206_CaseStudy.addVendor(VendorList, vendorToBeAdded);
+		System.out.println("Vendor successfully added");
 	}
 
 	// main menu / login page
