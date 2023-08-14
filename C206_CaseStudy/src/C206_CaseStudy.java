@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 
 public class C206_CaseStudy {
+	private static final int DEL_USER = 3;
+	private static final int VIEW_USER = 2;
+	private static final int ADD_USER = 1;
 	private static final int DEL_ORDER = 3;
 	private static final int VIEW_ALL_ORDER = 2;
 	private static final int ADD_ORDER = 1;
@@ -18,8 +21,39 @@ public class C206_CaseStudy {
 
 		SchoolList.add(new School("Granite Bay School", "Tampines St 78", "87654321"));
 
+
+
+	
+
 		// User Arraylist
+
 		ArrayList<Users> UserList = new ArrayList<Users>();
+
+		UserList.add(new Users("Jane Tan","S12345A","9123456","T12345A"));
+
+		//Menu ArrayList
+
+		ArrayList<VendorMenu> MenuList = new ArrayList<VendorMenu>();
+		MenuList.add(new VendorMenu("A1", "Breakfast menu"));
+
+		ArrayList<VendorMenu> menuList = new ArrayList<VendorMenu>();
+		menuList.add(new VendorMenu("A1", "Breakfast menu"));
+
+		
+		//Menu Items
+		ArrayList<String> menuItems = new ArrayList<>();
+        menuItems.add("Burger");
+        menuItems.add("Fries");
+        menuItems.add("Soda");
+		
+		//Order ArrayList
+		ArrayList<Order> orderList = new ArrayList<Order>();
+		orderList.add(new Order("10", "12/05/2025", menuItems));
+		
+		// Payment ArrayList
+				ArrayList<Payment> paymentList = new ArrayList<Payment>();
+				paymentList.add(new Payment("Debit Card", "314", "01/25", "87651234"));
+
 		UserList.add(new Users("Jane Tan", "S12345A", "9123456", "T12345A"));
 
 		// Menu ArrayList
@@ -43,6 +77,8 @@ public class C206_CaseStudy {
 		// Payment ArrayList
 		ArrayList<Payment> paymentList = new ArrayList<Payment>();
 		paymentList.add(new Payment("Debit Card", "314", "01/25", "87651234"));
+
+
 
 		int option = 0;
 
@@ -86,24 +122,45 @@ public class C206_CaseStudy {
 						System.out.println("Invalid Option! Please try again.");
 						userOption = Helper.readInt("Choose 1 Option: ");
 					}
-					if (userOption == 1) {
+					if (userOption == ADD_USER) {
 						// Add user
 
 						C206_CaseStudy.addUsers(UserList, C206_CaseStudy.inputUsers());
 						System.out.println("User has been added");
 
+
+
+
+					} else if (userOption == VIEW_USER) {
+
 					} else if (userOption == 2) {
+
 						// View all user
 
 						C206_CaseStudy.viewAllUsers(UserList);
 
+
+					} else if (userOption == DEL_USER) {
+
+
 					} else if (userOption == 3) {
+
 
 						String name = Helper.readString("Enter user Name to delete: ");
 
+
+
+
+
 						C206_CaseStudydraft.deleteUserByNric(UserList, name);
 
+
 						C206_CaseStudy.deleteUserByNric(UserList, name);
+
+
+
+						C206_CaseStudy.deleteUserByNric(UserList, name);
+
 
 						System.out.println("User deleted");
 
@@ -365,6 +422,316 @@ public class C206_CaseStudy {
 			if (existingUser.getName().equalsIgnoreCase(newUserName)) {
 				return;
 			}
+
+
+			// If no duplicate is found, add the new school to the list
+			usersList.add(newUsers);
+
+		}
+
+
+
+			public static String retrieveAllUsers(ArrayList<Users> usersList) {
+				String output = "";
+
+				for (int i = 0; i < usersList.size(); i++) {
+
+					output += String.format("%-21s %-21s %-10s\n", usersList.get(i).getName(), usersList.get(i).getNric(),
+							usersList.get(i).getContactNumber());
+
+				}
+				return output;
+			}
+
+			public static void viewAllUsers(ArrayList<Users> usersList) {
+				C206_CaseStudy.setHeader("USER LIST");
+				String output = String.format("%-20s %-20s %-10s\n", "|USER-NAME|", "|USER-NRIC|", "|USER-CONTACT-NUMBER|");
+				output += retrieveAllUsers(usersList);
+				System.out.println(output);
+			}
+
+			public static void deleteUserByNric(ArrayList<Users> usersList, String userNric) {
+				for (int i = 0; i < usersList.size(); i++) {
+					Users Users = usersList.get(i);
+					// Check if School is in the system
+					Boolean UserNricInSystem = Users.getNric().equalsIgnoreCase(userNric);
+
+					if (UserNricInSystem) {
+						usersList.remove(i);
+						return;
+					}
+				}
+			}
+
+			// ================================= For menu management
+			// =================================
+			public static void addVendorMenu(ArrayList<VendorMenu> menuList, VendorMenu menuToBeAdded) {
+				// TODO Auto-generated method stub
+				String newMenuName = menuToBeAdded.getMenuName();
+
+				for(VendorMenu existingMenu : menuList) {
+					if (existingMenu.getMenuName().equalsIgnoreCase(newMenuName)) {
+						return;
+					}
+
+					Boolean isVendorMenuNameEmpty = menuToBeAdded.getMenuName().isEmpty();
+					Boolean isMenuCodeEmpty = menuToBeAdded.getMenuCode().isEmpty();
+					if (isVendorMenuNameEmpty || isMenuCodeEmpty) {
+						System.out.println("Please fill in all neccessary fields!");
+						return;
+					}
+				}
+				// If no duplicate is found, add the new vendor to the list
+				menuList.add(menuToBeAdded);
+			}
+
+			public static String retrieveAllVendorMenu(ArrayList<VendorMenu> menuList) {
+				String output = "";
+
+				for (int i = 0; i < menuList.size(); i++) {
+
+					output += menuList.get(i).toStringVendorMenu();
+
+				}
+				return output;
+			}
+
+			public static void viewAllVendorMenu(ArrayList<VendorMenu> menuList) {
+				// TODO Auto-generated method stub
+				C206_CaseStudy.setHeader("MENU LIST");
+				String output = String.format("%-30s %-10s\n", "MENU CODE", "MENU NAME");
+				output += retrieveAllVendorMenu(menuList);
+				System.out.println(output);
+
+			}
+
+			public static void deleteVendorMenuByName(ArrayList<VendorMenu> menuList, String menuName) {
+				// TODO Auto-generated method stub
+				for (int i = 0; i < menuList.size(); i++) {
+					VendorMenu vendormenu = menuList.get(i);
+
+					//Check if deleted menu is still in the system
+					Boolean VendorMenuInSystem = vendormenu.getMenuName().equalsIgnoreCase(menuName);
+
+					if (VendorMenuInSystem) {
+						menuList.remove(i);
+						return;
+					}
+				}
+			}
+
+
+
+
+
+
+
+			// ================================= For order management
+			// =================================
+			public static Order inputOrder() {
+				String orderId = Helper.readString("Enter an id for the order > ");
+		        String Date = Helper.readString("Enter Date of order in (dd/mm/yyyy) format > ");
+		        ArrayList<String> menuItems = new ArrayList<String>();
+		        
+		        String menuItem;
+		        do {
+		            menuItem = Helper.readString("Enter Menu Item (or type 'done' to finish) > ");
+		            if (!menuItem.equalsIgnoreCase("done")) {
+		                menuItems.add(menuItem);
+		            }
+		        } while (!menuItem.equalsIgnoreCase("done"));
+		        
+		        
+		        Order ord = new Order(orderId, Date, menuItems);
+		        
+				return ord;
+		    
+			}
+
+		    public static void addOrder(ArrayList<Order> orderList, Order newOrder) {
+		        String neworderId = newOrder.getorderId();
+		        
+		        
+		        for (Order existingOrder : orderList) {
+		        	if (existingOrder.getorderId().equals(neworderId)) {
+		        		return;
+		        		
+		        	}
+		        	Boolean isOrderIdEmpty = newOrder.getorderId().isEmpty();
+					Boolean isDateEmpty = newOrder.getDate().isEmpty();
+					Boolean isMenuEmpty = newOrder.getMenuItems().isEmpty();
+					if (isOrderIdEmpty || isDateEmpty || isMenuEmpty) {
+						return;
+					}
+		        	
+		        	
+		        }
+		        
+		        orderList.add(newOrder);
+
+		    }
+
+		    public static String retrieveAllOrders(ArrayList<Order> orderList) {
+		        String output = "";
+
+		        for (int i = 0; i < orderList.size(); i++) {
+		            output += orderList.get(i).toStringOrder();
+		        }
+		        return output;
+		    }
+
+		    public static void viewAllOrders(ArrayList<Order> orderList) {
+		    	C206_CaseStudy.setHeader("ORDER LIST");
+		        Helper.line(100, "=");
+		        System.out.println("ORDER-LIST");
+		        String output = String.format("%-30s %-30s %-30s\n", "ORDER-ID", "DATE-OF-ORDER", "MENU-ITEMS");
+		        Helper.line(100, "=");
+		        output += retrieveAllOrders(orderList);
+		        System.out.println(output);
+		        Helper.line(100, "=");
+		    }
+
+		    public static void deleteOrderByorderId(ArrayList<Order> orderList, String orderId) {
+		        for (int i = 0; i < orderList.size(); i++) {
+		            Order order = orderList.get(i);
+		            Boolean parentNameInSystem = order.getorderId().equalsIgnoreCase(orderId);
+
+		            if (parentNameInSystem) {
+		                orderList.remove(i);
+		                return;
+		            }
+		        }
+		    }
+
+			// ================================= For payment management
+		    public static Payment inputPayemnt() {
+				String paymentType = Helper.readString("Enter Payment Type > ");
+				String paymentCvv = Helper.readString("Enter Card Cvv > ");
+				String paymentExpDate = Helper.readString("Enter Card Expiry Date > ");
+				String paymentAccNum = Helper.readString("Enter Card Number> ");
+
+				Payment pay = new Payment(paymentType, paymentCvv, paymentExpDate, paymentAccNum);
+				return pay;
+
+			}
+
+			public static void addPayment(ArrayList<Payment> paymentList, Payment newPayment) {
+				String newPaymentAcc = newPayment.getPaymentNum();
+
+				for (Payment existingPayment : paymentList) {
+					if (existingPayment.getPaymentNum().equalsIgnoreCase(newPaymentAcc)) {
+						System.out.println(
+								"This payment: " + newPaymentAcc + " already exists. Duplicate payment names are not allowed.");
+						return;
+					}
+					Boolean isPaymentTypeEmpty = newPayment.getPaymentType().isEmpty();
+					Boolean isPaymentCvvEmpty = newPayment.getPaymentCvv().isEmpty();
+					Boolean isPayemntExpDateEmpty = newPayment.getPaymentExpDate().isEmpty();
+					Boolean isPaymentAccNumEmpty = newPayment.getPaymentNum().isEmpty();
+					if (isPaymentTypeEmpty || isPaymentCvvEmpty || isPayemntExpDateEmpty || isPaymentAccNumEmpty) {
+						System.out.println("Please fill in all details");
+						return;
+					}
+
+				}
+
+				// If no duplicate is found, add the new payment to the list
+				paymentList.add(newPayment);
+
+			}
+
+			public static String retrieveAllPayment(ArrayList<Payment> paymentList) {
+				String output = "";
+
+				for (int i = 0; i < paymentList.size(); i++) {
+
+					output += paymentList.get(i).toString();
+
+				}
+				return output;
+			}
+
+			public static void viewAllPayment(ArrayList<Payment> paymentList) {
+				C206_CaseStudy.setHeader("Payment List");
+				String output = String.format("%-20s\n", "==PAYMENT TYPE==");
+				output += retrieveAllPayment(paymentList);
+				System.out.println(output);
+
+			}
+
+			public static void deletePaymentByAccNum(ArrayList<Payment> paymentList, String paymentAccNum) {
+				for (int i = 0; i < paymentList.size(); i++) {
+					Payment pay = paymentList.get(i);
+
+					// Check if the deleted payment is still in the system
+					Boolean paymentNameInSystem = pay.getPaymentType().equalsIgnoreCase(paymentAccNum);
+
+					if (paymentNameInSystem) {
+						paymentList.remove(i);
+						return;
+					}
+				}
+			}
+			// =================================
+
+			// ================================= For vendor management
+			// =================================
+			public static void addVendor(ArrayList<Vendor> VendorList, Vendor newVendor) {
+				String newVendorName = newVendor.getVendorName();
+
+				for (Vendor existingVendor : VendorList) {
+					if (existingVendor.getVendorName().equalsIgnoreCase(newVendorName)) {
+						System.out.println("Vendor '" + newVendorName + "' already exists. Duplicate names are not allowed.");
+						return;
+					}
+					Boolean isVendorNameEmpty = newVendor.getVendorName().isEmpty();
+					Boolean isVendorContactNumberEmpty = newVendor.getContactNumber().isEmpty();
+					Boolean isVendorAddressEmpty = newVendor.getAddress().isEmpty();
+					if (isVendorNameEmpty || isVendorContactNumberEmpty || isVendorAddressEmpty) {
+						System.out.println("Please fill in all neccessary fields!");
+						return;
+					}
+				}
+				
+				// If no duplicate is found, add the new vendor to the list
+				VendorList.add(newVendor);
+
+				}
+
+				public static String retrieveAllVendor(ArrayList<Vendor> VendorList) {
+					String output = "";
+
+					for (int i = 0; i < VendorList.size(); i++) {
+
+						output += String.format("%-20s %-25s %-27s %-10s\n", VendorList.get(i).getVendorName(), VendorList.get(i).getDescription(),
+								VendorList.get(i).getContactNumber(), VendorList.get(i).getAddress());
+
+					}
+					return output;
+				}
+
+				public static void viewAllVendor(ArrayList<Vendor> VendorList) {
+					C206_CaseStudydraft.setHeader("VENDORS LIST");
+					String output = String.format("%-20s %-25s %-27s %-10s\n", "VENDOR NAME", "VENDOR DESCRIPTION", "VENDOR CONTACT NUMBER", "VENDOR ADDRESS");
+					output += retrieveAllVendor(VendorList);
+					System.out.println(output);
+				}
+
+				public static void deleteVendorByName(ArrayList<Vendor> VendorList, String VendorName) {
+					for (int i = 0; i < VendorList.size(); i++) {
+						Vendor vendor = VendorList.get(i);
+						
+						//Check if deleted vendor is still in the system
+						Boolean VendorNameInSystem = vendor.getVendorName().equalsIgnoreCase(VendorName);
+				
+						if (VendorNameInSystem) {
+							VendorList.remove(i);
+							return;
+						}
+					}
+				}
+			}
+=======
 			Boolean isUserNameEmpty = newUsers.getName().isEmpty();
 			Boolean isUserNricEmpty = newUsers.getNric().isEmpty();
 			Boolean isContactNumberEmpty = newUsers.getContactNumber().isEmpty();
@@ -378,6 +745,7 @@ public class C206_CaseStudy {
 		usersList.add(newUsers);
 
 	}
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 
 	public static String retrieveAllUsers(ArrayList<Users> usersList) {
 		String output = "";

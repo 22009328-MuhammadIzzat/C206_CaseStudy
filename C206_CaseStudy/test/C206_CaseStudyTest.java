@@ -33,10 +33,22 @@ public class C206_CaseStudyTest {
 
 	private ArrayList<School> SchoolList;
 	private ArrayList<VendorMenu> menuList;
+<<<<<<< HEAD
+
 	private ArrayList<Users> UsersList;
+
+=======
+	private ArrayList<Users> UsersList;
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 	private ArrayList<Vendor> VendorList;
 	private ArrayList<Order> orderList;
+<<<<<<< HEAD
+    public ArrayList<String> menuItems = new ArrayList<>();
+	
+
+=======
 	public ArrayList<String> menuItems = new ArrayList<>();
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 
 	public C206_CaseStudyTest() {
 		super();
@@ -55,6 +67,18 @@ public class C206_CaseStudyTest {
 		VendorMenu3 = new VendorMenu("A3", "Dinner menu");
 
 		menuList = new ArrayList<VendorMenu>();
+<<<<<<< HEAD
+		
+
+		 Users1 = new Users("Jane Tan","S12345A","9123456","T12345A");
+         Users2 = new Users("James Lee","S12345B","9123457","T12345B");
+         Users3 = new Users("Emily Ong","S12345C","9123458","T12345C");
+           
+        UsersList = new ArrayList<Users>();
+
+
+
+=======
 
 		Users1 = new Users("Jane Tan", "S12345A", "9123456", "T12345A");
 		Users2 = new Users("James Lee", "S12345B", "9123457", "T12345B");
@@ -62,10 +86,16 @@ public class C206_CaseStudyTest {
 
 		UsersList = new ArrayList<Users>();
 
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 		Vendor1 = new Vendor("ABCVendor", "Western cuisine", "81568179", "Serangoon Road 123");
 		Vendor2 = new Vendor("SunshineVendor", "Malay cuisine", "98627689", "Ang Mo Kio Ave 8");
 		Vendor3 = new Vendor("A1Vendor", "Japan cuisine", "87945087", "Jurong West St 15");
 
+<<<<<<< HEAD
+        orderList = new ArrayList<Order>();
+		
+
+=======
 		VendorList = new ArrayList<Vendor>();
 
 		menuItems.add("Burger");
@@ -78,6 +108,7 @@ public class C206_CaseStudyTest {
 
 		orderList = new ArrayList<Order>();
 
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 	}
 
 	@Test
@@ -88,28 +119,52 @@ public class C206_CaseStudyTest {
 		assertEquals("Test that the School arraylist is empty.", 0, SchoolList.size());
 
 		// Given an empty list, after adding 1 item, the size of the list is 1
+<<<<<<< HEAD
+		C206_CaseStudy.addSchool(SchoolList, School1);
+		assertEquals("Test that the School arraylist size is 1.", 1, SchoolList.size());
+
+=======
 		SchoolMethods.addSchool(SchoolList, School1);
 		assertEquals("Test that the School arraylist size is 1.", 1, SchoolList.size());
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 
 		// Test Case 2: Boundary Condition
 		// Add another school
+<<<<<<< HEAD
+		C206_CaseStudy.addSchool(SchoolList, School2);
+=======
 		SchoolMethods.addSchool(SchoolList, School2);
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 		assertEquals("Test that the School arraylist size is now 2.", 2, SchoolList.size());
 
 		// The school just added is the same as the last school in the list
 		assertSame("Test that School is added to the end of the list.", School2, SchoolList.get(1));
 
 		// Add a school that already exists in the list
+<<<<<<< HEAD
+		C206_CaseStudy.addSchool(SchoolList, School2);
+		assertEquals("Test that the School arraylist size is unchanged.", 2, SchoolList.size());
+
+=======
 		SchoolMethods.addSchool(SchoolList, School2);
 		assertEquals("Test that the School arraylist size is unchanged.", 2, SchoolList.size());
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 
 		// Test Case 3: Error Condition
 		// Add a school with missing details
 		School school_missing = new School("School003", "", "98765432");
+<<<<<<< HEAD
+		C206_CaseStudy.addSchool(SchoolList, school_missing);
+=======
 		SchoolMethods.addSchool(SchoolList, school_missing);
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 		assertEquals("Test that the School arraylist size is unchanged.", 2, SchoolList.size());
 	}
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 	@Test
 	public void testAddVendorMenu() {
 		// Test Case 1: Normal Condition
@@ -121,6 +176,10 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addVendorMenu(menuList, VendorMenu1);
 		assertEquals("Test that the Menu arraylist size is 1.", 1, menuList.size());
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 		// Test Case 2: Boundary Condition
 		// Add another menu
 		C206_CaseStudy.addVendorMenu(menuList, VendorMenu2);
@@ -133,12 +192,20 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addVendorMenu(menuList, VendorMenu2);
 		assertEquals("Test that the Menu arraylist size is unchanged.", 2, menuList.size());
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 		// Test Case 3: Error Condition
 		// Add a menu with missing details
 		VendorMenu menu_missing = new VendorMenu("", "Dessert menu");
 		C206_CaseStudy.addVendorMenu(menuList, menu_missing);
 		assertEquals("Test that the Menu arraylist size is unchanged.", 2, menuList.size());
 	}
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 
 	@Test
 	public void testAddUsers() {
@@ -163,12 +230,24 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addUsers(UsersList, Users2);
 		assertEquals("Test that the User arraylist size is unchanged.", 2, UsersList.size());
 
+<<<<<<< HEAD
+
+		// Test Case 3: Error Condition
+		// Add a user with missing details
+		Users users_missing = new Users("User03", "S123458D", "", "T26137D");
+				C206_CaseStudy.addUsers(UsersList, users_missing);
+		assertEquals("Test that the Users arraylist size is unchanged.", 2, UsersList.size());
+	}
+
+
+=======
 		// Test Case 3: Error Condition
 		// Add a user with missing details
 		Users users_missing = new Users("User03", "S123458D", "", "T26137D");
 		C206_CaseStudy.addUsers(UsersList, users_missing);
 		assertEquals("Test that the Users arraylist size is unchanged.", 2, UsersList.size());
 	}
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 
 	public void testAddVendor() {
 		// Test Case 1: Normal Condition
@@ -236,13 +315,35 @@ public class C206_CaseStudyTest {
 		assertEquals("Test that the School arraylist is empty.", 0, SchoolList.size());
 
 		// Attempt to retrieve the Schools
-		String allSchools = SchoolMethods.retrieveAllSchool(SchoolList);
+<<<<<<< HEAD
+		String allSchools = C206_CaseStudy.retrieveAllSchool(SchoolList);
 		String testOutput = "";
 
 		// Test if the output is empty
 		assertEquals("Test that nothing is displayed", testOutput, allSchools);
 
+=======
+		String allSchools = SchoolMethods.retrieveAllSchool(SchoolList);
+		String testOutput = "";
+
+		// Test if the output is empty
+		assertEquals("Test that nothing is displayed", testOutput, allSchools);
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
+
 		// Test Case 2
+<<<<<<< HEAD
+		C206_CaseStudy.addSchool(SchoolList, School1);
+		C206_CaseStudy.addSchool(SchoolList, School2);
+		// Test that the list is not empty
+		assertEquals("Test that School arraylist size is 2.", 2, SchoolList.size());
+		// Attempt to retrieve the Schools
+		allSchools = C206_CaseStudy.retrieveAllSchool(SchoolList);
+		testOutput = String.format("%-30s %-30s %-10s\n", "Granite Bay School", "Tampines St 78", "87654321");
+		testOutput += String.format("%-30s %-30s %-10s\n", "Good School", "Punggol St 18", "90876545");
+		// Test that the details are displayed correctly
+		assertEquals("Test that the display is correct.", testOutput, allSchools);
+
+=======
 		SchoolMethods.addSchool(SchoolList, School1);
 		SchoolMethods.addSchool(SchoolList, School2);
 		// Test that the list is not empty
@@ -253,9 +354,20 @@ public class C206_CaseStudyTest {
 		testOutput += String.format("%-30s %-30s %-10s\n", "Good School", "Punggol St 18", "90876545");
 		// Test that the details are displayed correctly
 		assertEquals("Test that the display is correct.", testOutput, allSchools);
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 
 		// Test Case 3
 		School school3 = new School("School003", "", "99999999");
+<<<<<<< HEAD
+		C206_CaseStudy.addSchool(SchoolList, school3);
+		// Attempt to retrieve the Schools
+		allSchools = C206_CaseStudy.retrieveAllSchool(SchoolList);
+		testOutput = String.format("%-30s %-30s %-10s\n", "Granite Bay School", "Tampines St 78", "87654321");
+		testOutput += String.format("%-30s %-30s %-10s\n", "Good School", "Punggol St 18", "90876545");
+		// Test that the details are displayed correctly
+		assertEquals("Test that the display is correct.", testOutput, allSchools);
+
+=======
 		SchoolMethods.addSchool(SchoolList, school3);
 		// Attempt to retrieve the Schools
 		allSchools = SchoolMethods.retrieveAllSchool(SchoolList);
@@ -263,9 +375,14 @@ public class C206_CaseStudyTest {
 		testOutput += String.format("%-30s %-30s %-10s\n", "Good School", "Punggol St 18", "90876545");
 		// Test that the details are displayed correctly
 		assertEquals("Test that the display is correct.", testOutput, allSchools);
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 
 	}
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 	@Test
 	public void testRetrieveAllVendorMenu() {
 		// Test Case 1
@@ -280,6 +397,33 @@ public class C206_CaseStudyTest {
 		// Test if the output is empty
 		assertEquals("Test that nothing is displayed", testOutput, allVendorMenus);
 
+<<<<<<< HEAD
+		//Test Case 2
+		C206_CaseStudy.addVendorMenu(menuList, VendorMenu1);
+		C206_CaseStudy.addVendorMenu(menuList, VendorMenu2);
+
+		// Test that the list is not empty
+		assertEquals("Test that Menu arraylist size is 2.", 2, menuList.size());
+
+		// Attempt to retrieve the Menus
+		allVendorMenus = C206_CaseStudy.retrieveAllVendorMenu(menuList);
+		testOutput = String.format("%-30s %-10s\n", "A1", "Breakfast menu");
+		testOutput += String.format("%-30s %-10s\n", "A2", "Lunch menu");
+
+		// Test that the details are displayed correctly
+		assertEquals("Test that the display is correct.", testOutput, allVendorMenus);
+
+
+		//Test Case 3
+		VendorMenu vendorMenu3 = new VendorMenu("A3", "");
+		C206_CaseStudy.addVendorMenu(menuList, vendorMenu3);
+		//Attempt to retrieve the menus
+		allVendorMenus = C206_CaseStudy.retrieveAllVendorMenu(menuList);
+		testOutput = String.format("%-30s %-10s\n", "A1", "Breakfast menu");
+		testOutput += String.format("%-30s %-10s\n", "A2", "Lunch menu");
+		// Test that the details are displayed correctly
+		assertEquals("Test that the display is correct.", testOutput, allVendorMenus);
+=======
 		// Test Case 2
 		C206_CaseStudy.addVendorMenu(menuList, VendorMenu1);
 		C206_CaseStudy.addVendorMenu(menuList, VendorMenu2);
@@ -344,7 +488,50 @@ public class C206_CaseStudyTest {
 		testOutput += String.format("%-21s %-21s %-10s\n", "James Lee", "S12345B", "9123457");
 		// Test that the details are displayed correctly
 		assertEquals("Test that the display is correct.", testOutput, allUsers);
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 	}
+	
+	 
+		@Test
+		public void testRetrieveAllUsers() {
+			// Test Case 1
+			// Test if Users list is not null and empty
+			assertNotNull("Test if there is a valid Users arraylist to add to", UsersList);
+			assertEquals("Test that the User arraylist is empty.", 0, UsersList.size());
+
+			// Attempt to retrieve the Users
+			String allUsers = C206_CaseStudy.retrieveAllUsers(UsersList);
+			String testOutput = "";
+
+			// Test if the output is empty
+			assertEquals("Test that nothing is displayed", testOutput, allUsers);
+
+			//Test Case 2
+			C206_CaseStudy.addUsers(UsersList, Users1);
+			C206_CaseStudy.addUsers(UsersList, Users2);
+
+			// Test that the list is not empty
+			assertEquals("Test that User arraylist size is 2.", 2, UsersList.size());
+
+			// Attempt to retrieve the Users
+			allUsers = C206_CaseStudy.retrieveAllUsers(UsersList);
+			testOutput = String.format("%-21s %-21s %-10s\n", "Jane Tan","S12345A","9123456");
+			testOutput += String.format("%-21s %-21s %-10s\n",  "James Lee","S12345B","9123457");
+
+			// Test that the details are displayed correctly
+			assertEquals("Test that the display is correct.", testOutput, allUsers);
+
+
+			//Test Case 3
+			Users Users3 = new Users("User03", "", "99999999","T999999A");
+			C206_CaseStudy.addUsers(UsersList, Users3);
+			//Attempt to retrieve the Users
+			allUsers = C206_CaseStudy.retrieveAllUsers(UsersList);
+			testOutput = String.format("%-21s %-21s %-10s\n", "Jane Tan","S12345A","9123456");
+			testOutput += String.format("%-21s %-21s %-10s\n",  "James Lee","S12345B","9123457");
+			// Test that the details are displayed correctly
+			assertEquals("Test that the display is correct.", testOutput, allUsers);
+		}
 
 	@Test
 	public void testRetrieveAllVendor() {
@@ -432,6 +619,21 @@ public class C206_CaseStudyTest {
 		assertNotNull("Test if there is a valid School arraylist to add to", SchoolList);
 		assertEquals("Test that the School arraylist is empty.", 0, SchoolList.size());
 
+<<<<<<< HEAD
+
+		// Test Case 1: Normal Condition - Delete an existing school by name
+		// Add some schools to the SchoolList
+		C206_CaseStudy.addSchool(SchoolList, School1);
+		C206_CaseStudy.addSchool(SchoolList, School2);
+
+		// Delete School 2 by name
+		C206_CaseStudy.deleteSchoolByName(SchoolList, "Good School");
+
+		// Check that School 2 is removed from the list
+		assertEquals("Test that the SchoolList size is 1 after deleting School B.", 1, SchoolList.size());
+		assertFalse("Test that Good School is no longer in the SchoolList.", SchoolList.contains(School2));
+
+=======
 		// Test Case 1: Normal Condition - Delete an existing school by name
 		// Add some schools to the SchoolList
 		SchoolMethods.addSchool(SchoolList, School1);
@@ -443,33 +645,61 @@ public class C206_CaseStudyTest {
 		// Check that School 2 is removed from the list
 		assertEquals("Test that the SchoolList size is 1 after deleting School B.", 1, SchoolList.size());
 		assertFalse("Test that Good School is no longer in the SchoolList.", SchoolList.contains(School2));
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 
 		// Test Case 2: Boundary Condition - Delete the only school in the list
 
 		// Delete the first school (School1) by name
+<<<<<<< HEAD
+		C206_CaseStudy.deleteSchoolByName(SchoolList, "Granite Bay School");
+=======
 		SchoolMethods.deleteSchoolByName(SchoolList, "Granite Bay School");
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 
 		// Check that School X is removed from the list
+<<<<<<< HEAD
+		assertEquals("Test that the SchoolList size is 0 after deleting School 1.",0 , SchoolList.size());
+		assertFalse("Test that School1 is no longer in the SchoolList.", SchoolList.contains(School1));
+
+=======
 		assertEquals("Test that the SchoolList size is 0 after deleting School 1.", 0, SchoolList.size());
 		assertFalse("Test that School1 is no longer in the SchoolList.", SchoolList.contains(School1));
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 
 		// Test Case 3: Error Condition - Delete a school that does not exist in the
 		// list
 
+<<<<<<< HEAD
+=======
 		// Delete a school (School R) that does not exist in the list
 		SchoolMethods.deleteSchoolByName(SchoolList, "School R");
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 
+<<<<<<< HEAD
+		// Delete a school (School R) that does not exist in the list
+		C206_CaseStudy.deleteSchoolByName(SchoolList, "School R");
+
+=======
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 		// Check that the SchoolList remains unchanged (no schools are deleted)
 		assertEquals("Test that the SchoolList size is  after attempting to delete a non-existent school.", 0,
 				SchoolList.size());
 	}
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 	@Test
 	public void testDeleteVendorMenu() {
 		// Menu list is not null and it is empty
 		assertNotNull("Test if there is a valid Menu arraylist to add to", menuList);
 		assertEquals("Test that the Menu arraylist is empty.", 0, menuList.size());
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 		// Test Case 1: Normal Condition - Delete an existing menu by name
 		// Add some menus to the MenuList
 		C206_CaseStudy.addVendorMenu(menuList, VendorMenu1);
@@ -482,21 +712,35 @@ public class C206_CaseStudyTest {
 		assertEquals("Test that the MenuList size is 1 after deleting VendorMenu 2.", 1, menuList.size());
 		assertFalse("Test that Lunch menu is no longer in the menuList.", menuList.contains(VendorMenu2));
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 		// Test Case 2: Boundary Condition - Delete the only school in the list
 		// Delete the first menu (VendorMenu1) by name
 		C206_CaseStudy.deleteVendorMenuByName(menuList, "Breakfast menu");
 
 		// Check that VendorMenu 1 is removed from the list
+<<<<<<< HEAD
+		assertEquals("Test that the menuList size is 0 after deleting VendorMenu 1.",0 , menuList.size());
+		assertFalse("Test that VendorMenu1 is no longer in the menuList.", menuList.contains(VendorMenu1));
+
+=======
 		assertEquals("Test that the menuList size is 0 after deleting VendorMenu 1.", 0, menuList.size());
 		assertFalse("Test that VendorMenu1 is no longer in the menuList.", menuList.contains(VendorMenu1));
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 
 		// Test Case 3: Error Condition - Delete a menu that does not exist
 		// Delete a Menu (Drinks menu) that does not exist in the list
 		C206_CaseStudy.deleteVendorMenuByName(menuList, "Drinks menu");
 
 		// Check that the menuList remains unchanged (no menus are deleted)
+<<<<<<< HEAD
+		assertEquals("Test that the menuList size is the same after attempting to delete a non-existent menu.", 0, menuList.size());	
+=======
 		assertEquals("Test that the menuList size is the same after attempting to delete a non-existent menu.", 0,
 				menuList.size());
+>>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 	}
 
 	@Test
@@ -603,6 +847,43 @@ public class C206_CaseStudyTest {
 				UsersList.size());
 	}
 
+	@Test
+	public void testDeleteUsers() {
+		// Users list is not null and it is empty
+		assertNotNull("Test if there is a valid Users arraylist to add to", UsersList);
+		assertEquals("Test that the Users arraylist is empty.", 0, UsersList.size());
+		
+		
+		// Test Case 1: Normal Condition - Delete an existing User by Nric
+			// Add some Users to the UsersList
+				C206_CaseStudy.addUsers(UsersList, Users1);
+				C206_CaseStudy.addUsers(UsersList, Users2);
+								
+			// Delete Users 2 by Nric
+				C206_CaseStudy.deleteUserByNric(UsersList, "S12345B");
+
+			// Check that Users 2 is removed from the list
+				assertEquals("Test that the UsersList size is 1 after deleting VendorMenu 2.", 1, UsersList.size());
+				assertFalse("Test that S12345B is no longer in the UsersList.", UsersList.contains(Users2));
+					
+				
+		// Test Case 2: Boundary Condition - Delete the only User in the list
+			// Delete the first menu (Users1) by Nric
+				C206_CaseStudy.deleteUserByNric(UsersList, "S12345A");
+
+			// Check that Users1 is removed from the list
+				assertEquals("Test that the UsersList size is 0 after deleting Users 1.",0 , UsersList.size());
+				assertFalse("Test that Users1 is no longer in the UsersList.", UsersList.contains(Users1));
+							
+				
+		// Test Case 3: Error Condition - Delete a User that does not exist
+			// Delete a User (R12345C) that does not exist in the list
+				C206_CaseStudy.deleteUserByNric(UsersList, "R12345C");
+
+			// Check that the UsersList remains unchanged (no Users are deleted)
+				assertEquals("Test that the UsersList size is the same after attempting to delete a non-existent user.", 0, UsersList.size());	
+	}
+	
 	@Test
 	public void c206_test() {
 		// fail("Not yet implemented");
