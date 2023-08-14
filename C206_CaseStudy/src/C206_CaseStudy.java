@@ -36,6 +36,10 @@ public class C206_CaseStudy {
 		//Order ArrayList
 		ArrayList<Order> orderList = new ArrayList<Order>();
 		orderList.add(new Order("10", "12/05/2025", menuItems));
+		
+		// Payment ArrayList
+				ArrayList<Payment> paymentList = new ArrayList<Payment>();
+				paymentList.add(new Payment("Debit Card", "314", "01/25", "87651234"));
 
 		int option = 0;
 
@@ -192,9 +196,18 @@ public class C206_CaseStudy {
 					int userOption2 = Helper.readInt("Choose 1 option: ");
 					if (userOption2 == 1) {
 						// Add payment
+						String paymentName = Helper.readString("Enter Payment Type: ");
+						String paymentCvv = Helper.readString("Enter Cvv of your card: ");
+						String paymentExpDate = Helper.readString("Enter your card's expiry date (e.g. 09/26): ");
+						String paymentNum = Helper.readString("Enter your card's number: ");
+						Payment paymentAdded = new Payment(paymentName, paymentCvv, paymentExpDate, paymentNum);
+
+						C206_CaseStudy.addPayment(paymentList, paymentAdded);
+						System.out.println("Payment is successful!");
 
 					} else if (userOption2 == 2) {
 						// View payment
+						C206_CaseStudy.viewAllPayment(paymentList);
 
 					}
 				}
@@ -224,13 +237,16 @@ public class C206_CaseStudy {
 					C206_CaseStudy.deleteVendorMenuByName(menuList, name);
 					System.out.println("Menu successfully deleted!");
 
-				} else if (option == 4) { // payment gateway
+				}
+			} else if (option == 4) { // payment gateway
 
-					System.out.println("Delete payment");
-					// codes for delete payment
+				System.out.println("Delete payment");
+				// codes for delete payment
+				String paymentAcc = Helper.readString("Enter your card number: ");
+				C206_CaseStudy.deletePaymentByAccNum(paymentList, paymentAcc);
+				System.out.println("Payment successfully deleted!");
 
-				} 
-			}
+			} 
 		}System.out.println("Thank you for using School Lunch Box Online Ordering System!");
 	}
 
@@ -604,6 +620,74 @@ public class C206_CaseStudy {
 		    }
 
 			// ================================= For payment management
+		    public static Payment inputPayemnt() {
+				String paymentType = Helper.readString("Enter Payment Type > ");
+				String paymentCvv = Helper.readString("Enter Card Cvv > ");
+				String paymentExpDate = Helper.readString("Enter Card Expiry Date > ");
+				String paymentAccNum = Helper.readString("Enter Card Number> ");
+
+				Payment pay = new Payment(paymentType, paymentCvv, paymentExpDate, paymentAccNum);
+				return pay;
+
+			}
+
+			public static void addPayment(ArrayList<Payment> paymentList, Payment newPayment) {
+				String newPaymentAcc = newPayment.getPaymentNum();
+
+				for (Payment existingPayment : paymentList) {
+					if (existingPayment.getPaymentNum().equalsIgnoreCase(newPaymentAcc)) {
+						System.out.println(
+								"This payment: " + newPaymentAcc + " already exists. Duplicate payment names are not allowed.");
+						return;
+					}
+					Boolean isPaymentTypeEmpty = newPayment.getPaymentType().isEmpty();
+					Boolean isPaymentCvvEmpty = newPayment.getPaymentCvv().isEmpty();
+					Boolean isPayemntExpDateEmpty = newPayment.getPaymentExpDate().isEmpty();
+					Boolean isPaymentAccNumEmpty = newPayment.getPaymentNum().isEmpty();
+					if (isPaymentTypeEmpty || isPaymentCvvEmpty || isPayemntExpDateEmpty || isPaymentAccNumEmpty) {
+						System.out.println("Please fill in all details");
+						return;
+					}
+
+				}
+
+				// If no duplicate is found, add the new payment to the list
+				paymentList.add(newPayment);
+
+			}
+
+			public static String retrieveAllPayment(ArrayList<Payment> paymentList) {
+				String output = "";
+
+				for (int i = 0; i < paymentList.size(); i++) {
+
+					output += paymentList.get(i).toString();
+
+				}
+				return output;
+			}
+
+			public static void viewAllPayment(ArrayList<Payment> paymentList) {
+				C206_CaseStudy.setHeader("Payment List");
+				String output = String.format("%-20s\n", "==PAYMENT TYPE==");
+				output += retrieveAllPayment(paymentList);
+				System.out.println(output);
+
+			}
+
+			public static void deletePaymentByAccNum(ArrayList<Payment> paymentList, String paymentAccNum) {
+				for (int i = 0; i < paymentList.size(); i++) {
+					Payment pay = paymentList.get(i);
+
+					// Check if deleted payment is still in the system
+					Boolean paymentNameInSystem = pay.getPaymentType().equalsIgnoreCase(paymentAccNum);
+
+					if (paymentNameInSystem) {
+						paymentList.remove(i);
+						return;
+					}
+				}
+			}
 			// =================================
 
 			// ================================= For vendor management
