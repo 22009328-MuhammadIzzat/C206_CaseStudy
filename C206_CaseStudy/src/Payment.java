@@ -19,7 +19,7 @@ public class Payment {
 		this.paymentExpDate = paymentExpDate;
 		this.paymentNum = paymentNum;
 	}
-	//to be displayed for payment types
+	//to be displayed for payment types in UI
 	public String toString() {
 		String itemInfo = String.format("%-30s %-30s\n", "Credit Card", "Debit Card");
 		return itemInfo;

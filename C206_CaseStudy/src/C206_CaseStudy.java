@@ -679,7 +679,7 @@ public class C206_CaseStudy {
 				for (int i = 0; i < paymentList.size(); i++) {
 					Payment pay = paymentList.get(i);
 
-					// Check if deleted payment is still in the system
+					// Check if the deleted payment is still in the system
 					Boolean paymentNameInSystem = pay.getPaymentType().equalsIgnoreCase(paymentAccNum);
 
 					if (paymentNameInSystem) {
