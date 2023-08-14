@@ -33,14 +33,12 @@ public class C206_CaseStudyTest {
 
 	private ArrayList<School> SchoolList;
 	private ArrayList<VendorMenu> menuList;
-<<<<<<< HEAD
 	private ArrayList<Users> UsersList;
-=======
 	private ArrayList<Vendor> VendorList;
 	private ArrayList<Order> orderList;
     public ArrayList<String> menuItems = new ArrayList<>();
 	
->>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
+
 
 	public C206_CaseStudyTest() {
 		super();
@@ -60,15 +58,12 @@ public class C206_CaseStudyTest {
 
 		menuList = new ArrayList<VendorMenu>();
 		
-<<<<<<< HEAD
 		 Users1 = new Users("Jane Tan","S12345A","9123456","T12345A");
          Users2 = new Users("James Lee","S12345B","9123457","T12345B");
          Users3 = new Users("Emily Ong","S12345C","9123458","T12345C");
            
         UsersList = new ArrayList<Users>();
 
-
-=======
 		Vendor1 = new Vendor("ABCVendor", "Western cuisine", "81568179", "Serangoon Road 123");
 		Vendor2 = new Vendor("SunshineVendor", "Malay cuisine", "98627689", "Ang Mo Kio Ave 8");
 		Vendor3 = new Vendor("A1Vendor", "Japan cuisine", "87945087", "Jurong West St 15");
@@ -86,7 +81,7 @@ public class C206_CaseStudyTest {
         orderList = new ArrayList<Order>();
 		
 		
->>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
+
 	}
 
 	@Test
@@ -153,8 +148,6 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addVendorMenu(menuList, menu_missing);
 		assertEquals("Test that the Menu arraylist size is unchanged.", 2, menuList.size());
 	}
-<<<<<<< HEAD
-
 	@Test
 	public void testAddUsers() {
 		// Test Case 1: Normal Condition
@@ -186,11 +179,8 @@ public class C206_CaseStudyTest {
 		assertEquals("Test that the Users arraylist size is unchanged.", 2, UsersList.size());
 	}
 
-
-=======
 	
->>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
-	@Test
+
 	public void testAddVendor() {
 		// Test Case 1: Normal Condition
 			// Vendor list is not null and it is empty
@@ -292,12 +282,7 @@ public class C206_CaseStudyTest {
 
 
 	}
-<<<<<<< HEAD
 
-
-=======
-	
->>>>>>> branch 'master' of https://github.com/22009328-MuhammadIzzat/C206_CaseStudy.git
 	@Test
 	public void testRetrieveAllVendorMenu() {
 		// Test Case 1
