@@ -137,12 +137,13 @@ public class C206_CaseStudyTest {
 			// The vendor just added is the same as the last vendor in the list
 				assertSame("Test that vendor is added to the end of the list.", Vendor2, VendorList.get(1));
 
+		// Test Case 3: Boundary Condition
 			// Add a vendor that already exists in the list
-				C206_CaseStudy.addVendor(VendorList, Vendor2);
-				assertEquals("Test that the Vendor arraylist size is unchanged.", 2, VendorList.size());
+			C206_CaseStudy.addVendor(VendorList, Vendor2);
+			assertEquals("Test that the Vendor arraylist size is unchanged.", 2, VendorList.size());
 				
 				
-		// Test Case 3: Error Condition
+		// Test Case 4: Error Condition
 			// Add a vendor with missing details
 				Vendor vendor_missing = new Vendor("", "Chinese cuisine", "98765432", "Toa Payoh Ave 4");
 				C206_CaseStudy.addVendor(VendorList, vendor_missing);
