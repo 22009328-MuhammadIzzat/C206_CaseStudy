@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 
 public class C206_CaseStudy {
+	private static final int DEL_ORDER = 3;
+	private static final int VIEW_ALL_ORDER = 2;
+	private static final int ADD_ORDER = 1;
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -161,17 +165,17 @@ public class C206_CaseStudy {
 						System.out.println("Invalid Option! Please try again.");
 						userOption = Helper.readInt("Choose 1 Option: ");
 					}
-					if (userOption1 == 1) {
+					if (userOption1 == ADD_ORDER) {
 						// Add order
 						Order newOrder = inputOrder();
 					    C206_CaseStudy.addOrder(orderList, newOrder);
-					    System.out.println("Order added");
+					    System.out.println("Order has been Successfully added");
 
-					} else if (userOption1 == 2) {
+					} else if (userOption1 == VIEW_ALL_ORDER) {
 						// View all order
 						C206_CaseStudy.viewAllOrders(orderList);
 
-					} else if (userOption1 == 3) {
+					} else if (userOption1 == DEL_ORDER) {
 						// Delete order
 					    String orderIdToDelete = Helper.readString("Enter order id to delete order: ");
 					    C206_CaseStudy.deleteOrderByorderId(orderList, orderIdToDelete);
